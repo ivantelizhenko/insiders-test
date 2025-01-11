@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-type UserType = {
+export type UserType = {
   name: string;
   status: {
     name: string;
@@ -17,17 +17,17 @@ type UserType = {
   };
 };
 
-type CountryType = {
+export type CountryType = {
   name: string;
   value: string;
 };
 
-type DepartmentType = {
+export type DepartmentType = {
   name: string;
   value: string;
 };
 
-type StatusType = {
+export type StatusType = {
   name: string;
   value: string;
 };

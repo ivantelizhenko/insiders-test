@@ -1,42 +1,40 @@
 import { PropsWithChildren } from 'react';
-import { NavLink } from 'react-router';
 import styled from 'styled-components';
 
-type ButtonProps = PropsWithChildren<{
-  to: string;
-}>;
+type ButtonProps = {
+  onClick: () => void;
+  width: string;
+} & PropsWithChildren;
 
-const StyledButton = styled.div`
+const StyledButton = styled.button<ButtonProps>`
   border: 1px solid #c4c4c4;
+  background-color: #fff;
+  color: #000;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 2rem;
 
-  a:link,
-  a:visited {
-    color: #000;
-    font-weight: 300;
-    font-size: 1.4rem;
-    line-height: 2rem;
+  padding: 1rem;
 
-    padding: 1rem;
+  display: flex;
 
-    display: flex;
-    width: 20rem;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  width: ${props => props.width};
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 
-    transition: all 0.2s;
-  }
-  a:hover,
-  a:active,
-  .active {
+  transition: all 0.2s;
+
+  &:hover,
+  &:active {
     background-color: #c4c4c4;
   }
 `;
 
-function Button({ to, children }: ButtonProps) {
+function Button({ onClick, children, width }: ButtonProps) {
   return (
-    <StyledButton>
-      <NavLink to={to}>{children}</NavLink>
+    <StyledButton onClick={onClick} width={width}>
+      {children}
     </StyledButton>
   );
 }

@@ -1,4 +1,4 @@
-export const counriesData = [
+export const countriesData = [
   {
     name: 'Ukraine',
     value: 'UA',

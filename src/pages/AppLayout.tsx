@@ -8,6 +8,8 @@ const StyledAppLayout = styled.div`
   font-family: 'Rubik', serif;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  height: 100vh;
 `;
 const StyledMain = styled.main`
   margin: 8rem 10rem;

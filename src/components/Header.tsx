@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from './Button';
+import ButtonLink from './ButtonLink';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -13,8 +13,8 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-      <Button to="edit">Edit Users</Button>
-      <Button to="users">Users</Button>
+      <ButtonLink to="edit">Edit Users</ButtonLink>
+      <ButtonLink to="users">Users</ButtonLink>
     </StyledHeader>
   );
 }
