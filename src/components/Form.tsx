@@ -4,10 +4,8 @@ import { ChangeEvent, FormEvent } from 'react';
 import Heading from './Heading';
 import Input from './Input';
 
-import { countriesData as countries } from '../../data/countriesData';
-import { departmentsData as departments } from '../../data/departmentsData';
-import { statusesData as statuses } from '../../data/statusesData';
 import Select from './Select';
+import { useAppState } from '../contexts/userContext/AppContext';
 
 const StyledForm = styled.div`
   display: flex;
@@ -24,6 +22,7 @@ const InputsBox = styled.div`
 `;
 
 function Form() {
+  const { departments, statuses, countries } = useAppState();
   function onChange(e: FormEvent<HTMLFormElement>) {
     console.log(e.target);
   }

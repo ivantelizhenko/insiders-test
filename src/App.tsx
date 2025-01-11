@@ -3,8 +3,26 @@ import EditUsers from './pages/EditUsers';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import PageNotFound from './pages/PageNotFound';
 import AppLayout from './pages/AppLayout';
+import { useAppState } from './contexts/userContext/AppContext';
+import { usersData } from '../data/usersData';
+import { countriesData } from '../data/countriesData';
+import { departmentsData } from '../data/departmentsData';
+import { statusesData } from '../data/statusesData';
+import { useEffect } from 'react';
 
 function App() {
+  const { fetchUsers, fetchCountries, fetchDepartmentse, fetchStatuses } =
+    useAppState();
+
+  useEffect(() => {
+    fetchUsers(usersData);
+    fetchCountries(countriesData);
+    fetchDepartmentse(departmentsData);
+    fetchStatuses(statusesData);
+
+    // !!
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>

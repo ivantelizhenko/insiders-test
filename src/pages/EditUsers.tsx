@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import Heading from '../components/Heading';
 
-import { usersData } from '../../data/usersData';
 import Select from '../components/Select';
 import { ChangeEvent } from 'react';
 import Form from '../components/Form';
 import Button from '../components/Button';
+import { useAppState } from '../contexts/userContext/AppContext';
 
 const StyledEditUsers = styled.div`
   display: flex;
@@ -26,7 +26,8 @@ const ButtonsContainer = styled.div`
 `;
 
 function EditUsers() {
-  const users = usersData.map(user => ({
+  const { users } = useAppState();
+  const usersTransform = users.map(user => ({
     name: user.name,
   }));
 
@@ -41,7 +42,7 @@ function EditUsers() {
     <StyledEditUsers>
       <Heading as="h2">Edit user</Heading>
       <EditUsersInputsContainer>
-        <Select label="Users" objs={users} handlerSelect={test} />
+        <Select label="Users" objs={usersTransform} handlerSelect={test} />
         <Form />
       </EditUsersInputsContainer>
       <ButtonsContainer>
