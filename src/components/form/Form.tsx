@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { ChangeEvent, FormEvent } from 'react';
-
-import Heading from './Heading';
+import { useAppState } from '../../contexts/userContext/AppContext';
+import Heading from '../headings/Heading';
 import Input from './Input';
-
 import Select from './Select';
-import { useAppState } from '../contexts/userContext/AppContext';
 
 const StyledForm = styled.div`
   display: flex;

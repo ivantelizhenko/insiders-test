@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import Heading from '../components/Heading';
+import Heading from '../components/headings/Heading';
 
-import Select from '../components/Select';
+import Select from '../components/form/Select';
 import { ChangeEvent } from 'react';
-import Form from '../components/Form';
-import Button from '../components/Button';
+
 import { useAppState } from '../contexts/userContext/AppContext';
+import ButtonOrdinary from '../components/buttons/ButtonOrdinary';
+import Form from '../components/form/Form';
 
 const StyledEditUsers = styled.div`
   display: flex;
@@ -46,12 +47,12 @@ function EditUsers() {
         <Form />
       </EditUsersInputsContainer>
       <ButtonsContainer>
-        <Button width="10rem" onClick={onClick}>
+        <ButtonOrdinary width="10rem" onClick={onClick}>
           Undo
-        </Button>
-        <Button width="20rem" onClick={onClick}>
+        </ButtonOrdinary>
+        <ButtonOrdinary width="20rem" onClick={onClick}>
           Save
-        </Button>
+        </ButtonOrdinary>
       </ButtonsContainer>
     </StyledEditUsers>
   );

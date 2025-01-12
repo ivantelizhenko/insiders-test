@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import Filter from './Filter';
+import Filter from '../filters/Filter';
 
-type FilterBox = { name: string; data: any };
+type FilterBoxProps = { name: string; data: { name: string; value: string }[] };
 
 const StyledFilterBox = styled.div`
   border: 1px #000 solid;
@@ -14,7 +14,7 @@ const StyledFilterBox = styled.div`
   & ul {
     display: flex;
     flex-direction: column;
-    height: 8rem;
+    height: 12rem;
     overflow: scroll;
   }
 `;
@@ -36,23 +36,24 @@ const Button = styled.button`
   }
 `;
 
-function FilterBox({ name, data }: FilterBox) {
-  const [showWindow, setShowWindow] = useState(false);
+function FilterBox({ name, data }: FilterBoxProps) {
+  const [showWindow, setShowWindow] = useState<boolean>(false);
 
   function handleClick() {
-    setShowWindow(!showWindow);
+    setShowWindow(prevState => !prevState);
     console.log(showWindow);
   }
 
   return (
     <StyledFilterBox>
       <Button onClick={handleClick}>Select {name}</Button>
-      <ul>
-        {showWindow &&
-          data.map((el: { name: string; value: string }) => (
+      {showWindow && (
+        <ul>
+          {data.map((el: { name: string; value: string }) => (
             <Filter key={el.name} label={el.name} value={el.value || el.name} />
           ))}
-      </ul>
+        </ul>
+      )}
     </StyledFilterBox>
   );
 }

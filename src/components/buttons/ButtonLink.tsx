@@ -1,29 +1,21 @@
 import { PropsWithChildren } from 'react';
 import { NavLink } from 'react-router';
 import styled from 'styled-components';
+import { Button } from './Button';
 
-type ButtonProps = PropsWithChildren<{
+type ButtonLinkProps = PropsWithChildren<{
   to: string;
+  width: string;
+  as: string;
 }>;
 
-const StyledButtonLink = styled.div`
-  border: 1px solid #c4c4c4;
-
+const StyledButtonLink = styled(Button)`
   a:link,
   a:visited {
     color: #000;
-    font-weight: 300;
-    font-size: 1.4rem;
-    line-height: 2rem;
-
     padding: 1rem;
-
-    display: flex;
-    width: 20rem;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-
+    width: 100%;
+    text-align: center;
     transition: all 0.2s;
   }
   a:hover,
@@ -33,9 +25,9 @@ const StyledButtonLink = styled.div`
   }
 `;
 
-function ButtonLink({ to, children }: ButtonProps) {
+function ButtonLink({ to, children, width, as }: ButtonLinkProps) {
   return (
-    <StyledButtonLink>
+    <StyledButtonLink width={width} as={as}>
       <NavLink to={to}>{children}</NavLink>
     </StyledButtonLink>
   );
