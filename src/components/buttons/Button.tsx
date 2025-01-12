@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
-type ButtonProps = { width: string };
+type ButtonProps = { width: string; padding: string; height: string };
 
 export const Button = styled.button<ButtonProps>`
   border: 1px solid #c4c4c4;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: ${props => props.width};
 
+  height: ${props => props.height};
+  width: ${props => props.width};
+  padding: ${props => props.padding};
   cursor: pointer;
 
   color: #000;

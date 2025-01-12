@@ -6,6 +6,7 @@ import { Button } from './Button';
 type ButtonLinkProps = PropsWithChildren<{
   to: string;
   width: string;
+  height: string;
   as: string;
 }>;
 
@@ -25,9 +26,9 @@ const StyledButtonLink = styled(Button)`
   }
 `;
 
-function ButtonLink({ to, children, width, as }: ButtonLinkProps) {
+function ButtonLink({ to, children, width, as, height }: ButtonLinkProps) {
   return (
-    <StyledButtonLink width={width} as={as}>
+    <StyledButtonLink width={width} height={height} as={as} padding="0">
       <NavLink to={to}>{children}</NavLink>
     </StyledButtonLink>
   );

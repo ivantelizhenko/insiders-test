@@ -13,10 +13,10 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-      <ButtonLink to="edit" width="20rem" as="div">
+      <ButtonLink to="edit" width="20rem" as="div" height="100%">
         Edit Users
       </ButtonLink>
-      <ButtonLink to="users" width="20rem" as="div">
+      <ButtonLink to="users" width="20rem" as="div" height="100%">
         Users
       </ButtonLink>
     </StyledHeader>
