@@ -28,7 +28,7 @@ const StyledButtonLink = styled(Button)`
 
 function ButtonLink({ to, children, width, as, height }: ButtonLinkProps) {
   return (
-    <StyledButtonLink width={width} height={height} as={as} padding="0">
+    <StyledButtonLink width={width} height={height} as={as}>
       <NavLink to={to}>{children}</NavLink>
     </StyledButtonLink>
   );

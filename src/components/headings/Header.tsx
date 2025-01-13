@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import ButtonLink from '../buttons/ButtonLink';
+
+import { useAppState } from '../../contexts/userContext/AppContext';
+import { useNavigate } from 'react-router';
+import { Button } from '../buttons/Button';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -11,14 +14,25 @@ const StyledHeader = styled.header`
 `;
 
 function Header() {
+  const navigate = useNavigate();
+  const { currentUser, users } = useAppState();
+
+  function handleNavigate(path: string) {
+    navigate(path);
+  }
+
   return (
     <StyledHeader>
-      <ButtonLink to="edit" width="20rem" as="div" height="100%">
+      <Button
+        disabled={users.length === 0}
+        onClick={() => handleNavigate(`edit/${currentUser.id}`)}
+        width="20rem"
+      >
         Edit Users
-      </ButtonLink>
-      <ButtonLink to="users" width="20rem" as="div" height="100%">
+      </Button>
+      <Button onClick={() => handleNavigate('users')} width="20rem">
         Users
-      </ButtonLink>
+      </Button>
     </StyledHeader>
   );
 }

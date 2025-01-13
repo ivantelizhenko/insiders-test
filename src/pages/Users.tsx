@@ -62,12 +62,12 @@ function Users() {
         </FiltersBox>
       </div>
       <div className="styledUsers-buttonIcon">
-        <Button width="5rem" padding="1.4rem" height="100%">
+        <Button width="5rem" padding="1.4rem">
           <TrashSvg />
         </Button>
       </div>
       <div className="styledUsers-button">
-        <Button width="15rem" padding="1.4rem" height="100%">
+        <Button width="15rem" padding="1.4rem">
           Add User
         </Button>
       </div>

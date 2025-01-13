@@ -14,7 +14,7 @@ function App() {
           <Route index element={<Navigate replace to="users" />} />
 
           <Route path="users" element={<Users />} />
-          <Route path="edit" element={<EditUsers />} />
+          <Route path="edit/:userId" element={<EditUsers />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

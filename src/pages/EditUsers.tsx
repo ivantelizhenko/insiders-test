@@ -48,10 +48,10 @@ function EditUsers() {
         <Form />
       </EditUsersInputsContainer>
       <ButtonsContainer>
-        <Button width="10rem" onClick={onClick} padding="1rem" height="100%">
+        <Button width="10rem" onClick={onClick}>
           Undo
         </Button>
-        <Button width="20rem" onClick={onClick} padding="1rem" height="100%">
+        <Button width="20rem" onClick={onClick}>
           Save
         </Button>
       </ButtonsContainer>

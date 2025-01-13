@@ -3,8 +3,10 @@ import UserListItem from './UserListItem';
 
 const StyledUsersLists = styled.div`
   padding: 2.8rem 3.6rem;
-  height: 35rem;
   overflow-y: scroll;
+
+  // TODO: a flexible height
+  height: 35rem;
 `;
 
 const testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];

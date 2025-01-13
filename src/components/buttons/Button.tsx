@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-type ButtonProps = { width: string; padding: string; height: string };
+type ButtonProps = { width: string; padding?: string; height?: string };
 
 export const Button = styled.button<ButtonProps>`
   border: 1px solid #c4c4c4;
@@ -8,9 +8,9 @@ export const Button = styled.button<ButtonProps>`
   align-items: center;
   justify-content: center;
 
-  height: ${props => props.height};
+  height: ${props => props.height || '100%'};
   width: ${props => props.width};
-  padding: ${props => props.padding};
+  padding: ${props => props.padding || '1rem'};
   cursor: pointer;
 
   color: #000;
@@ -24,5 +24,10 @@ export const Button = styled.button<ButtonProps>`
   &:hover,
   &:active {
     background-color: #c4c4c4;
+  }
+
+  &:disabled {
+    background-color: #e3e8ee;
+    color: #c4c4c4;
   }
 `;

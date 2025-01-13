@@ -33,6 +33,7 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
         ...state,
         isLoading: false,
         users: action.payload,
+        currentUser: action.payload.at(0)!,
       };
     }
     case 'countries/loaded': {
