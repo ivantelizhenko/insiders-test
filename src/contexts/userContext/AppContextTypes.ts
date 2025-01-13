@@ -42,12 +42,7 @@ export type AppStateType = {
   error: string;
 };
 
-export type AppContextValueType = AppStateType & {
-  fetchUsers: (users: UserType[]) => void;
-  fetchCountries: (countries: CountryType[]) => void;
-  fetchDepartmentse: (departments: DepartmentType[]) => void;
-  fetchStatuses: (statuses: StatusType[]) => void;
-};
+export type AppContextValueType = AppStateType & {};
 
 export type AppContextProviderProps = {
   children: ReactNode;
@@ -74,10 +69,16 @@ export type FetchStatusesAction = {
   payload: StatusType[];
 };
 
+export type RejectAction = {
+  type: 'rejected';
+  payload: string;
+};
+
 export type ActionType =
   | LoadingAction
   | FetchUsersAction
   | FetchCountriesAction
   | FetchDepartmentseAction
-  | FetchStatusesAction;
+  | FetchStatusesAction
+  | RejectAction;
 // export type ActionType = () => void;

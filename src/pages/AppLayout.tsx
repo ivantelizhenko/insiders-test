@@ -1,8 +1,7 @@
 import { Outlet } from 'react-router';
 import styled from 'styled-components';
-import Header from '../components/headings/Header';
 
-// type AppLayoutType = PropsWithChildren;
+import Header from '../components/headings/Header';
 
 const StyledAppLayout = styled.div`
   font-family: 'Rubik', serif;
