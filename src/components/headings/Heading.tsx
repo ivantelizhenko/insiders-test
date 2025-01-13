@@ -25,6 +25,15 @@ const StyledHeading = styled.h2`
       font-size: 2rem;
       justify-content: start;
     `}
+
+  ${props =>
+    props.as === 'h5' &&
+    css`
+      font-size: 1.4rem;
+      justify-content: start;
+      line-height: 2rem;
+      font-weight: 700;
+    `}
 `;
 
 function Heading({ children, as }: HeadingProps) {

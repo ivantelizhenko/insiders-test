@@ -9,12 +9,18 @@ const StyledAppLayout = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  height: 100vh;
+  min-height: 100vh;
 `;
+
+const paddingV = '6rem';
+const paddingH = '8rem';
+
 const StyledMain = styled.main`
   margin: 8rem 10rem;
-  padding: 6rem 8rem;
+  padding: ${`${paddingV} ${paddingH}`};
   border: 1px #000 solid;
+  max-height: calc(100vh - paddingV);
+  flex: 1;
 `;
 
 function AppLayout() {
