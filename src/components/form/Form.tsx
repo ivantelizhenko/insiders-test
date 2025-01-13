@@ -35,7 +35,7 @@ function Form() {
       <InputsBox>
         <Input
           label="Full Name"
-          defaultValue="Ivan Telizhenko"
+          defaultValue="Ivan"
           type="text"
           handleChange={onChange}
         />

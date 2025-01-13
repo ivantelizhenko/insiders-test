@@ -8,6 +8,7 @@ import { useAppState } from '../contexts/userContext/AppContext';
 
 import Form from '../components/form/Form';
 import { Button } from '../components/buttons/Button';
+import { useNavigate } from 'react-router';
 
 const StyledEditUsers = styled.div`
   display: flex;
@@ -29,17 +30,21 @@ const ButtonsContainer = styled.div`
 
 function EditUsers() {
   const { users } = useAppState();
+  const navigate = useNavigate();
+
   const usersTransform = users.map(user => ({
+    id: user.id,
     name: user.name,
   }));
 
   function test(e: ChangeEvent<HTMLSelectElement>) {
-    console.log(e.target.value);
+    navigate(`/app/edit/${e.target.value}`);
   }
 
   function onClick() {
     console.log('click');
   }
+
   return (
     <StyledEditUsers>
       <Heading as="h2">Edit user</Heading>

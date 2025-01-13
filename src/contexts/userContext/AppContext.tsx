@@ -36,6 +36,12 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
         currentUser: action.payload.at(0)!,
       };
     }
+    // case 'user/set': {
+    //   return {
+    //     ...state,
+    //     currentUser: state.users.find(user => user.id === action.payload)!,
+    //   };
+    // }
     case 'countries/loaded': {
       return {
         ...state,
@@ -130,6 +136,10 @@ function AppProvider({ children }: AppContextProviderProps) {
 
   const ctx: AppContextValueType = {
     ...appState,
+
+    // setCurrentUser(id) {
+    //   dispatch({ type: 'user/set', payload: id });
+    // },
   };
 
   return <AppContext.Provider value={ctx}>{children}</AppContext.Provider>;

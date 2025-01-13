@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type SelectType = {
   label: string;
-  objs: { name: string; value?: string }[];
+  objs: { name: string; id: string }[];
   handlerSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
 };
 
@@ -35,7 +35,7 @@ function Select({ objs, label, handlerSelect }: SelectType) {
       <StyledSelect onChange={handlerSelect}>
         {objs.map(el => {
           return (
-            <option key={el.value || el.name} value={el.value || el.name}>
+            <option key={el.id} value={el.id}>
               {el.name}
             </option>
           );

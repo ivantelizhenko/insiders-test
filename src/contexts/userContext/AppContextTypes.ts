@@ -43,7 +43,9 @@ export type AppStateType = {
   error: string;
 };
 
-export type AppContextValueType = AppStateType & {};
+export type AppContextValueType = AppStateType & {
+  // setCurrentUser: (id: string) => void;
+};
 
 export type AppContextProviderProps = {
   children: ReactNode;
@@ -54,6 +56,11 @@ export type LoadingAction = {
 };
 
 export type FetchUsersAction = { type: 'users/loaded'; payload: UserType[] };
+
+export type SetCurrentUserAction = {
+  type: 'user/set';
+  payload: string;
+};
 
 export type FetchCountriesAction = {
   type: 'countries/loaded';
@@ -78,6 +85,7 @@ export type RejectAction = {
 export type ActionType =
   | LoadingAction
   | FetchUsersAction
+  | SetCurrentUserAction
   | FetchCountriesAction
   | FetchDepartmentseAction
   | FetchStatusesAction

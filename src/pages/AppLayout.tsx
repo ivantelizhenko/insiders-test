@@ -24,23 +24,10 @@ const StyledMain = styled.main`
   flex: 1;
 `;
 
-const StyledAppLayoutLoaderContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 function AppLayout() {
   const { isLoading } = useAppState();
 
-  if (isLoading)
-    return (
-      <StyledAppLayoutLoaderContainer>
-        <Loader />;
-      </StyledAppLayoutLoaderContainer>
-    );
+  if (isLoading) return <Loader />;
 
   return (
     <StyledAppLayout>

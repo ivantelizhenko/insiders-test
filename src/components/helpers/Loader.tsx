@@ -13,7 +13,7 @@ const StyledLoader = styled.div`
     position: absolute;
     inset: 0px;
     border-radius: 50%;
-    border: 5px solid #fff;
+    border: 5px solid #000;
     animation: prixClipFix 2s linear infinite;
   }
 
@@ -42,8 +42,20 @@ const StyledLoader = styled.div`
   }
 `;
 
+const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
 function Loader() {
-  return <StyledLoader></StyledLoader>;
+  return (
+    <LoaderContainer>
+      <StyledLoader></StyledLoader>;
+    </LoaderContainer>
+  );
 }
 
 export default Loader;
