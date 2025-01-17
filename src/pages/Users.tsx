@@ -7,12 +7,13 @@ import FilterBox from '../components/filters/FilterBox';
 import Heading from '../components/headings/Heading';
 import FiltersBox from '../components/filters/Filtersbox';
 import { Button } from '../components/buttons/Button';
-import Table from '../components/table/Table';
+
 import { TrashSvg } from '../components/helpers/Svgs';
+import UsersTable from '../components/table/userTable/UsersTable';
 
 const StyledUsers = styled.div`
   display: grid;
-  grid-template-rows: repeat(3, fit-content);
+  grid-template-rows: repeat(3, auto);
   grid-template-columns: repeat(3, 1fr);
 
   #styledUsers-heading {
@@ -72,7 +73,7 @@ function Users() {
         </Button>
       </div>
       <div id="styledUsers-table">
-        <Table />
+        <UsersTable />
       </div>
     </StyledUsers>
   );

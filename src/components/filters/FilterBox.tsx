@@ -14,7 +14,7 @@ const StyledFilterBox = styled.div`
   flex-direction: column;
   height: min-content;
 
-  & ul {
+  ul {
     display: flex;
     flex-direction: column;
     height: 12rem;
@@ -27,7 +27,6 @@ function FilterBox({ name, data }: FilterBoxProps) {
 
   function handleClick() {
     setShowWindow(prevState => !prevState);
-    console.log(showWindow);
   }
 
   return (

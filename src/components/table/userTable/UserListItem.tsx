@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { Button } from '../buttons/Button';
-import { TrashSvg } from '../helpers/Svgs';
+import { Button } from '../../buttons/Button';
+import { TrashSvg } from '../../helpers/Svgs';
 
 const StyledUserListItem = styled.li`
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 20rem auto 20rem 10rem 2.4rem;
+  grid-template-columns: 20rem 1fr 20rem 10rem 2.4rem;
 
   align-items: center;
 

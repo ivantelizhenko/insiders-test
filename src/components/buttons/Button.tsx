@@ -15,6 +15,7 @@ export const Button = styled.button<ButtonProps>`
 
   color: #000;
   background-color: #fff;
+
   font-weight: 300;
   font-size: 1.4rem;
   line-height: 2rem;

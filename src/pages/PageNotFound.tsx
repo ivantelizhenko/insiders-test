@@ -1,12 +1,16 @@
-import { Link } from 'react-router';
 import styled from 'styled-components';
+import Heading from '../components/headings/Heading';
 
-const StyledPageNotFound = styled.div``;
+import { Link } from 'react-router';
+
+const StyledPageNotFound = styled.div`
+  padding: 6rem 8rem;
+`;
 
 function PageNotFound() {
   return (
     <StyledPageNotFound>
-      <h1>Page not found</h1>
+      <Heading as="h1">Page not found</Heading>
       <Link to="/app/users">Go to Users page</Link>
     </StyledPageNotFound>
   );

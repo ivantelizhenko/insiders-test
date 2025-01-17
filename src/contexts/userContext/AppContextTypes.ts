@@ -21,16 +21,19 @@ export type UserType = {
 export type CountryType = {
   name: string;
   value: string;
+  id: string;
 };
 
 export type DepartmentType = {
   name: string;
   value: string;
+  id: string;
 };
 
 export type StatusType = {
   name: string;
   value: string;
+  id: string;
 };
 
 export type AppStateType = {

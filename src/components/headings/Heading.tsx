@@ -11,6 +11,14 @@ const StyledHeading = styled.h2`
   font-weight: 400;
 
   ${props =>
+    props.as === 'h1' &&
+    css`
+      text-transform: uppercase;
+      font-size: 3.6rem;
+      letter-spacing: 0.6rem;
+    `}
+
+  ${props =>
     props.as === 'h2' &&
     css`
       text-transform: uppercase;

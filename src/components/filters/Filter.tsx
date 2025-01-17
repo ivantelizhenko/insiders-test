@@ -7,7 +7,7 @@ const StyledFilter = styled.li`
   padding: 0.8rem 1.2rem;
   gap: 0.8rem;
 
-  & label {
+  label {
     font-size: 1.4rem;
     overflow-x: scroll;
     display: flex;
@@ -15,18 +15,13 @@ const StyledFilter = styled.li`
     justify-content: center;
   }
 
-  & input {
+  input {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 2rem;
     height: 2rem;
     border: none;
-
-    &:checked {
-      background-color: #000;
-      color: #fff;
-    }
   }
 `;
 
@@ -34,6 +29,7 @@ function Filter({ label, value }: Filter) {
   return (
     <StyledFilter>
       <input type="checkbox" value={value} />
+      <span className="checkmark"></span>
       <label>{label}</label>
     </StyledFilter>
   );

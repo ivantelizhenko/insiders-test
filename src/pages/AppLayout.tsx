@@ -9,19 +9,15 @@ const StyledAppLayout = styled.div`
   font-family: 'Rubik', serif;
   display: flex;
   flex-direction: column;
+
   background-color: #fff;
   min-height: 100vh;
 `;
 
-const paddingV = '6rem';
-const paddingH = '8rem';
-
 const StyledMain = styled.main`
   margin: 8rem 10rem;
-  padding: ${`${paddingV} ${paddingH}`};
+  padding: 6rem 8rem;
   border: 1px #000 solid;
-  max-height: calc(100vh - paddingV);
-  flex: 1;
 `;
 
 function AppLayout() {

@@ -20,7 +20,8 @@ const InputsBox = styled.div`
 `;
 
 function Form() {
-  const { departments, statuses, countries } = useAppState();
+  const { departments, statuses, countries, currentUser } = useAppState();
+  console.log(departments, statuses, countries);
   function onChange(e: FormEvent<HTMLFormElement>) {
     console.log(e.target);
   }
@@ -35,7 +36,7 @@ function Form() {
       <InputsBox>
         <Input
           label="Full Name"
-          defaultValue="Ivan"
+          defaultValue={currentUser.name}
           type="text"
           handleChange={onChange}
         />

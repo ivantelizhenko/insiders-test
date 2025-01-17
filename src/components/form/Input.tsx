@@ -4,7 +4,7 @@ import styled from 'styled-components';
 type InputProps = {
   label: string;
   type: string;
-  defaultValue: string;
+  defaultValue: string | undefined;
   handleChange: (e: FormEvent<HTMLFormElement>) => void;
 };
 
