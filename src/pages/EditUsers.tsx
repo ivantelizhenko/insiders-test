@@ -48,10 +48,12 @@ function EditUsers() {
   return (
     <StyledEditUsers>
       <Heading as="h2">Edit user</Heading>
+
       <EditUsersInputsContainer>
         <Select label="Users" objs={usersTransform} handlerSelect={test} />
         <Form />
       </EditUsersInputsContainer>
+
       <ButtonsContainer>
         <Button width="10rem" onClick={onClick}>
           Undo

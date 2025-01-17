@@ -15,24 +15,24 @@ const StyledUsers = styled.div`
   grid-template-rows: repeat(3, fit-content);
   grid-template-columns: repeat(3, 1fr);
 
-  .styledUsers-heading {
+  #styledUsers-heading {
     grid-column: 1/-1;
   }
-  .styledUsers-message {
+  #styledUsers-message {
     grid-column: 1/-1;
   }
 
-  .styledUsers-buttonIcon {
+  #styledUsers-buttonIcon {
     height: min-content;
     margin-left: 1.6rem;
   }
 
-  .styledUsers-button {
+  #styledUsers-button {
     height: min-content;
     margin-left: auto;
   }
 
-  .styledUsers-table {
+  #styledUsers-table {
     margin-top: 4rem;
     grid-column: 1/-1;
   }
@@ -46,32 +46,32 @@ function Users() {
 
   return (
     <StyledUsers>
-      <div className="styledUsers-heading">
+      <div id="styledUsers-heading">
         <Heading as="h2">Users</Heading>
       </div>
-      <div className="styledUsers-message">
+      <div id="styledUsers-message">
         <Message>
           Please add at least 3 departmetns to be able to proceed next steps.
         </Message>
       </div>
-      <div className="styledUsers-filterBox">
+      <div id="styledUsers-filterBox">
         <FiltersBox>
           <FilterBox data={departments} name="department" />
           <FilterBox data={countries} name="country" />
           <FilterBox data={statuses} name="status" />
         </FiltersBox>
       </div>
-      <div className="styledUsers-buttonIcon">
+      <div id="styledUsers-buttonIcon">
         <Button width="5rem" padding="1.4rem">
           <TrashSvg />
         </Button>
       </div>
-      <div className="styledUsers-button">
+      <div id="styledUsers-button">
         <Button width="15rem" padding="1.4rem">
           Add User
         </Button>
       </div>
-      <div className="styledUsers-table">
+      <div id="styledUsers-table">
         <Table />
       </div>
     </StyledUsers>

@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router';
 import styled from 'styled-components';
+import { Outlet } from 'react-router';
 
-import Header from '../components/headings/Header';
 import { useAppState } from '../contexts/userContext/AppContext';
+import Header from '../components/headings/Header';
 import Loader from '../components/helpers/Loader';
 
 const StyledAppLayout = styled.div`

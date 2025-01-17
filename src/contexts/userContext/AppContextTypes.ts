@@ -90,4 +90,3 @@ export type ActionType =
   | FetchDepartmentseAction
   | FetchStatusesAction
   | RejectAction;
-// export type ActionType = () => void;
