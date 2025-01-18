@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import Heading from '../components/headings/Heading';
-
-import Select from '../components/form/Select';
 import { ChangeEvent } from 'react';
-
-import { useAppState } from '../contexts/userContext/AppContext';
-
-import Form from '../components/form/Form';
-import { Button } from '../components/buttons/Button';
 import { useNavigate } from 'react-router';
+
+import { useAppState } from '../../contexts/userContext/AppContext';
+
+import EditUserForm from './EditUserForm';
+import Heading from '../../ui/Heading';
+import Select from '../../ui/Select';
+import { Button } from '../../ui/Button';
 
 const StyledEditUsers = styled.div`
   display: flex;
@@ -51,7 +50,7 @@ function EditUsers() {
 
       <EditUsersInputsContainer>
         <Select label="Users" objs={usersTransform} handlerSelect={test} />
-        <Form />
+        <EditUserForm />
       </EditUsersInputsContainer>
 
       <ButtonsContainer>

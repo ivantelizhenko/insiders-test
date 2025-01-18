@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Button } from '../../buttons/Button';
-import { TrashSvg } from '../../helpers/Svgs';
+import { Button } from '../../../ui/Button';
+import { TrashSvg } from '../../../ui/Svgs';
 
 const StyledUserListItem = styled.li`
   display: grid;

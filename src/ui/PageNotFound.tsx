@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Heading from '../components/headings/Heading';
 
 import { Link } from 'react-router';
+import Heading from './Heading';
 
 const StyledPageNotFound = styled.div`
   padding: 6rem 8rem;

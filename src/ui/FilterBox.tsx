@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import Filter from '../filters/Filter';
-import { Button } from '../buttons/Button';
+import Filter from './Filter';
+import { Button } from './Button';
 
 type FilterBoxProps = { name: string; data: { name: string; value: string }[] };
 

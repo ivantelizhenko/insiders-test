@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import Form from '../components/form/Form';
-import { Button } from '../components/buttons/Button';
-import { useAppState } from '../contexts/userContext/AppContext';
+
+import { useAppState } from '../../contexts/userContext/AppContext';
+
+import AddUserForm from './AddUserForm';
+import { Button } from '../../ui/Button';
 
 const Overlay = styled.div`
   position: absolute;
@@ -38,10 +40,11 @@ const ButtonBox = styled.div`
 function AddUserModal() {
   const { closeModal } = useAppState();
 
+  // TODO: Reusable Modal Window
   return (
     <Overlay onClick={closeModal}>
       <Modal>
-        <Form />
+        <AddUserForm />
         <ButtonBox>
           <Button width="20rem">Add User</Button>
           <Button width="10rem" onClick={closeModal}>

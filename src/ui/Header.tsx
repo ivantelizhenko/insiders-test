@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-
-import { useAppState } from '../../contexts/userContext/AppContext';
 import { useNavigate } from 'react-router';
-import { Button } from '../buttons/Button';
+
+import { Button } from './Button';
+import { useAppState } from '../contexts/userContext/AppContext';
 
 const StyledHeader = styled.header`
   display: flex;

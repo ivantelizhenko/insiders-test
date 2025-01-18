@@ -1,4 +1,4 @@
-import Table from '../Table';
+import Table from '../../../ui/Table';
 import UsersLists from './UsersLists';
 
 function UsersTable() {

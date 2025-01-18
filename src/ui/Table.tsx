@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import Heading from '../headings/Heading';
 import { ReactNode } from 'react';
+
+import Heading from './Heading';
 
 const StyledTable = styled.div`
   border: 1px solid #e3e8ee;

@@ -1,18 +1,15 @@
 import styled from 'styled-components';
-
-import Message from '../components/helpers/Message';
-
-import { useAppState } from '../contexts/userContext/AppContext';
-import FilterBox from '../components/filters/FilterBox';
-import Heading from '../components/headings/Heading';
-import FiltersBox from '../components/filters/Filtersbox';
-import { Button } from '../components/buttons/Button';
-
-import { TrashSvg } from '../components/helpers/Svgs';
-import UsersTable from '../components/table/userTable/UsersTable';
-import './Modal';
 import { createPortal } from 'react-dom';
+
 import AddUserModal from './AddUserModal';
+import UsersTable from './userTable/UsersTable';
+import { useAppState } from '../../contexts/userContext/AppContext';
+import Heading from '../../ui/Heading';
+import Message from '../../ui/Message';
+import FiltersBox from '../../ui/Filtersbox';
+import FilterBox from '../../ui/FilterBox';
+import { Button } from '../../ui/Button';
+import { TrashSvg } from '../../ui/Svgs';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -45,6 +42,7 @@ const StyledUsers = styled.div`
 function Users() {
   const { departments, statuses, countries, showModalStatus, setStatusModal } =
     useAppState();
+
   // function onClick() {
   //   console.log('click');
   // }

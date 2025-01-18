@@ -1,8 +1,9 @@
-import Users from './pages/Users';
-import EditUsers from './pages/EditUsers';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
-import PageNotFound from './pages/PageNotFound';
-import AppLayout from './pages/AppLayout';
+
+import AppLayout from './ui/AppLayout';
+import EditUsers from './features/editUser/EditUsers';
+import PageNotFound from './ui/PageNotFound';
+import Users from './features/users/Users';
 
 function App() {
   return (

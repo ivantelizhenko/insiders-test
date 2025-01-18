@@ -7,7 +7,7 @@ import {
   useContext,
   useState,
 } from 'react';
-import { ModalVariantsType } from '../contexts/userContext/AppContextTypes';
+import { ModalVariantsType } from '../../contexts/userContext/AppContextTypes';
 
 const StyledModal = styled.div``;
 
