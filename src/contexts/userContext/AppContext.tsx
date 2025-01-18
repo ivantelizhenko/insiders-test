@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from 'react';
 import {
   ActionType,
   AppContextProviderProps,
@@ -34,16 +40,15 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
         ...state,
         isLoading: false,
         users: action.payload,
-        currentUser: action.payload.at(0)!,
       };
     }
 
-    // case 'user/set': {
-    //   return {
-    //     ...state,
-    //     currentUser: state.users.find(user => user.id === action.payload)!,
-    //   };
-    // }
+    case 'user/set': {
+      return {
+        ...state,
+        currentUser: state.users.find(user => user.id === action.payload)!,
+      };
+    }
     case 'countries/loaded': {
       return {
         ...state,
@@ -128,6 +133,9 @@ function AppProvider({ children }: AppContextProviderProps) {
     closeModal() {
       dispatch({ type: 'modal/close' });
     },
+    setCurrentUser: useCallback(id => {
+      dispatch({ type: 'user/set', payload: id });
+    }, []),
   };
 
   return <AppContext.Provider value={ctx}>{children}</AppContext.Provider>;

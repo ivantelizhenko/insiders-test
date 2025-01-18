@@ -52,6 +52,7 @@ export type AppStateType = {
 export type AppContextValueType = AppStateType & {
   setStatusModal: (status: ModalVariantsType) => void;
   closeModal: () => void;
+  setCurrentUser: (id: string | undefined) => void;
 };
 
 export type AppContextProviderProps = {
@@ -66,7 +67,7 @@ export type FetchUsersAction = { type: 'users/loaded'; payload: UserType[] };
 
 export type SetCurrentUserAction = {
   type: 'user/set';
-  payload: string;
+  payload: string | undefined;
 };
 
 export type FetchCountriesAction = {

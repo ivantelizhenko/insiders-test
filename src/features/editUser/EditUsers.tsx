@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { useAppState } from '../../contexts/userContext/AppContext';
@@ -8,6 +8,7 @@ import EditUserForm from './EditUserForm';
 import Heading from '../../ui/Heading';
 import Select from '../../ui/Select';
 import { Button } from '../../ui/Button';
+import { useParams } from 'react-router';
 
 const StyledEditUsers = styled.div`
   display: flex;
@@ -28,8 +29,13 @@ const ButtonsContainer = styled.div`
 `;
 
 function EditUsers() {
-  const { users } = useAppState();
+  const { users, currentUser, setCurrentUser } = useAppState();
   const navigate = useNavigate();
+  const { userId } = useParams();
+
+  useEffect(() => {
+    setCurrentUser(userId);
+  }, [userId, setCurrentUser]);
 
   const usersTransform = users.map(user => ({
     id: user.id,
@@ -49,7 +55,12 @@ function EditUsers() {
       <Heading as="h2">Edit user</Heading>
 
       <EditUsersInputsContainer>
-        <Select label="Users" objs={usersTransform} handlerSelect={test} />
+        <Select
+          label="Users"
+          objs={usersTransform}
+          handlerSelect={test}
+          defaultValue={currentUser?.id}
+        />
         <EditUserForm />
       </EditUsersInputsContainer>
 

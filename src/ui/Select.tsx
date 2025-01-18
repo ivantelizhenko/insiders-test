@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 type SelectType = {
   label: string;
+  defaultValue?: string;
   objs: { name: string; id: string; value?: string }[];
   handlerSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
 };
@@ -28,11 +29,11 @@ const StyledSelect = styled.select`
   border-radius: 2px;
 `;
 
-function Select({ objs, label, handlerSelect }: SelectType) {
+function Select({ objs, label, handlerSelect, defaultValue = '' }: SelectType) {
   return (
     <StyledSelectBox>
       <label htmlFor={label}>{label}</label>
-      <StyledSelect onChange={handlerSelect}>
+      <StyledSelect onChange={handlerSelect} value={defaultValue}>
         <option key="default0" value="">
           Select {label}
         </option>

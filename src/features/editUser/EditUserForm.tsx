@@ -21,13 +21,28 @@ function EditUserForm() {
     <Form title="User Information">
       <Input
         label="Full Name"
-        defaultValue={currentUser.name}
+        defaultValue={currentUser?.name}
         type="text"
         handleChange={onChange}
       />
-      <Select label="Department" objs={departments} handlerSelect={test} />
-      <Select label="Country" objs={countries} handlerSelect={test} />
-      <Select label="Status" objs={statuses} handlerSelect={test} />
+      <Select
+        label="Department"
+        objs={departments}
+        handlerSelect={test}
+        defaultValue={currentUser?.department?.value}
+      />
+      <Select
+        label="Country"
+        objs={countries}
+        handlerSelect={test}
+        defaultValue={currentUser?.country?.value}
+      />
+      <Select
+        label="Status"
+        objs={statuses}
+        handlerSelect={test}
+        defaultValue={currentUser?.status?.value}
+      />
     </Form>
   );
 }
