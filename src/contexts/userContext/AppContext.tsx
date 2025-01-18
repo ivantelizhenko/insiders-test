@@ -12,7 +12,8 @@ import {
   AppStateType,
 } from './AppContextTypes';
 import { API_URL } from '../../utils/constants';
-import { AJAX } from '../../services/AJAX';
+import { getJSON } from '../../services/AJAX';
+import { addUserAPI } from '../../services/APIUsers';
 
 const AppContext = createContext<AppContextValueType | null>(null);
 
@@ -47,6 +48,13 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
       return {
         ...state,
         currentUser: state.users.find(user => user.id === action.payload)!,
+      };
+    }
+
+    case 'user/add': {
+      return {
+        ...state,
+        users: [action.payload, ...state.users],
       };
     }
     case 'countries/loaded': {
@@ -101,16 +109,16 @@ function AppProvider({ children }: AppContextProviderProps) {
     async function fetchData() {
       dispatch({ type: 'loading' });
       try {
-        const users = await AJAX(`${API_URL}/users`);
+        const users = await getJSON(`${API_URL}/users`);
         dispatch({ type: 'users/loaded', payload: users });
 
-        const departments = await AJAX(`${API_URL}/departments`);
+        const departments = await getJSON(`${API_URL}/departments`);
         dispatch({ type: 'departments/loaded', payload: departments });
 
-        const countries = await AJAX(`${API_URL}/countries`);
+        const countries = await getJSON(`${API_URL}/countries`);
         dispatch({ type: 'countries/loaded', payload: countries });
 
-        const statuses = await AJAX(`${API_URL}/statuses`);
+        const statuses = await getJSON(`${API_URL}/statuses`);
         dispatch({ type: 'statuses/loaded', payload: statuses });
       } catch (error) {
         console.error(error);
@@ -136,6 +144,10 @@ function AppProvider({ children }: AppContextProviderProps) {
     setCurrentUser: useCallback(id => {
       dispatch({ type: 'user/set', payload: id });
     }, []),
+    addUser(newUser) {
+      addUserAPI(newUser);
+      dispatch({ type: 'user/add', payload: newUser });
+    },
   };
 
   return <AppContext.Provider value={ctx}>{children}</AppContext.Provider>;

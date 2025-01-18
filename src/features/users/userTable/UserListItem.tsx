@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '../../../ui/Button';
 import { TrashSvg } from '../../../ui/Svgs';
+import { UserType } from '../../../contexts/userContext/AppContextTypes';
 
 const StyledUserListItem = styled.li`
   display: grid;
@@ -23,13 +24,15 @@ const StyledUserListItem = styled.li`
   }
 `;
 
-function UserListItem() {
+function UserListItem({ user }: { user: UserType }) {
+  const { name, department, country, status } = user;
+
   return (
     <StyledUserListItem>
-      <p>name</p>
-      <p>department</p>
-      <p>country</p>
-      <p>status</p>
+      <p>{name}</p>
+      <p>{department.name}</p>
+      <p>{country.name}</p>
+      <p>{status.name}</p>
       <Button width="5rem" padding="1.4rem" height="100%">
         <TrashSvg />
       </Button>

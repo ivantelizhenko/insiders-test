@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import UserListItem from './UserListItem';
+import { useAppState } from '../../../contexts/userContext/AppContext';
 
 const StyledUsersLists = styled.ul`
   padding: 2.8rem 3.6rem;
 `;
 
-const testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-// const testArr = [];
-
 function UsersLists() {
+  const { users } = useAppState();
+
   return (
     <StyledUsersLists>
-      {testArr.map(el => (
-        <UserListItem key={el} />
+      {users.map(user => (
+        <UserListItem user={user} key={user.id} />
       ))}
     </StyledUsersLists>
   );

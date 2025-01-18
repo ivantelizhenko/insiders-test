@@ -2,99 +2,122 @@
   "countries": [
     {
       "name": "Ukraine",
-      "value": "UA"
+      "value": "UA",
+      "id": "cbf8"
     },
     {
       "name": "United States",
-      "value": "US"
+      "value": "US",
+      "id": "1d74"
     },
     {
       "name": "Canada",
-      "value": "CA"
+      "value": "CA",
+      "id": "38d6"
     },
     {
       "name": "Germany",
-      "value": "DE"
+      "value": "DE",
+      "id": "0534"
     },
     {
       "name": "France",
-      "value": "FR"
+      "value": "FR",
+      "id": "2033"
     },
     {
       "name": "Australia",
-      "value": "AU"
+      "value": "AU",
+      "id": "e7ca"
     },
     {
       "name": "Japan",
-      "value": "JP"
+      "value": "JP",
+      "id": "2859"
     },
     {
       "name": "United Kingdom",
-      "value": "GB"
+      "value": "GB",
+      "id": "46c3"
     },
     {
       "name": "China",
-      "value": "CN"
+      "value": "CN",
+      "id": "6ed8"
     },
     {
       "name": "India",
-      "value": "IN"
+      "value": "IN",
+      "id": "7748"
     }
   ],
   "departments": [
     {
       "name": "Human Resources",
-      "value": "HR"
+      "value": "HR",
+      "id": "ee91"
     },
     {
       "name": "Finance",
-      "value": "FIN"
+      "value": "FIN",
+      "id": "7bbf"
     },
     {
       "name": "Information Technology",
-      "value": "IT"
+      "value": "IT",
+      "id": "02c7"
     },
     {
       "name": "Marketing",
-      "value": "MKT"
+      "value": "MKT",
+      "id": "e150"
     },
     {
       "name": "Sales",
-      "value": "SAL"
+      "value": "SAL",
+      "id": "76c5"
     },
     {
       "name": "Customer Support",
-      "value": "CS"
+      "value": "CS",
+      "id": "f11d"
     },
     {
       "name": "Research and Development",
-      "value": "R&D"
+      "value": "R&D",
+      "id": "c1c7"
     },
     {
       "name": "Operations",
-      "value": "OPS"
+      "value": "OPS",
+      "id": "d748"
     },
     {
       "name": "Legal",
-      "value": "LEG"
+      "value": "LEG",
+      "id": "257b"
     },
     {
       "name": "Product Management",
-      "value": "PM"
+      "value": "PM",
+      "id": "8857"
     }
   ],
   "statuses": [
     {
       "name": "All statuses",
-      "value": "ALL"
+      "value": "ALL",
+      "id": "9833"
     },
     {
       "name": "Active",
-      "value": "ACTIVE"
+      "value": "ACTIVE",
+      "id": "a824"
     },
     {
       "name": "Disabled",
-      "value": "DISABLED"
+      "value": "DISABLED",
+      "id": "def6"
     }
   ],
   "users": [
@@ -111,7 +134,8 @@
       "country": {
         "name": "United States",
         "value": "US"
-      }
+      },
+      "id": "71ec"
     },
     {
       "name": "Jane Smith",
@@ -126,7 +150,8 @@
       "country": {
         "name": "Canada",
         "value": "CA"
-      }
+      },
+      "id": "e0cc"
     },
     {
       "name": "Alice Johnson",
@@ -141,7 +166,8 @@
       "country": {
         "name": "United Kingdom",
         "value": "GB"
-      }
+      },
+      "id": "3421"
     },
     {
       "name": "Bob Brown",
@@ -156,7 +182,8 @@
       "country": {
         "name": "Australia",
         "value": "AU"
-      }
+      },
+      "id": "1a54"
     },
     {
       "name": "Charlie Davis",
@@ -171,7 +198,8 @@
       "country": {
         "name": "Germany",
         "value": "DE"
-      }
+      },
+      "id": "d514"
     },
     {
       "name": "Eve Wilson",
@@ -186,7 +214,8 @@
       "country": {
         "name": "France",
         "value": "FR"
-      }
+      },
+      "id": "4f72"
     },
     {
       "name": "Frank Moore",
@@ -201,7 +230,8 @@
       "country": {
         "name": "India",
         "value": "IN"
-      }
+      },
+      "id": "9f94"
     },
     {
       "name": "Grace Lee",
@@ -216,7 +246,8 @@
       "country": {
         "name": "China",
         "value": "CN"
-      }
+      },
+      "id": "cabf"
     },
     {
       "name": "Henry White",
@@ -231,7 +262,8 @@
       "country": {
         "name": "Japan",
         "value": "JP"
-      }
+      },
+      "id": "46dd"
     },
     {
       "name": "Isabella Green",
@@ -246,7 +278,8 @@
       "country": {
         "name": "Ukraine",
         "value": "UA"
-      }
+      },
+      "id": "68fe"
     },
     {
       "name": "Jack Black",
@@ -261,7 +294,8 @@
       "country": {
         "name": "Australia",
         "value": "AU"
-      }
+      },
+      "id": "af9f"
     },
     {
       "name": "Lily Scott",
@@ -276,6 +310,39 @@
       "country": {
         "name": "Canada",
         "value": "CA"
+      },
+      "id": "e928"
+    },
+    {
+      "id": "0.7947003150570028",
+      "name": "Ivan Telizhenko",
+      "status": {
+        "name": "Active",
+        "value": "ACTIVE"
+      },
+      "department": {
+        "name": "Information Technology",
+        "value": "IT"
+      },
+      "country": {
+        "name": "Ukraine",
+        "value": "UA"
+      }
+    },
+    {
+      "id": "0.5068753250063971",
+      "name": "Ivan Telizhenko",
+      "status": {
+        "name": "Active",
+        "value": "ACTIVE"
+      },
+      "department": {
+        "name": "Information Technology",
+        "value": "IT"
+      },
+      "country": {
+        "name": "Ukraine",
+        "value": "UA"
       }
     }
   ]

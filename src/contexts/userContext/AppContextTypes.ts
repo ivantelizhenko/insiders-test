@@ -53,6 +53,7 @@ export type AppContextValueType = AppStateType & {
   setStatusModal: (status: ModalVariantsType) => void;
   closeModal: () => void;
   setCurrentUser: (id: string | undefined) => void;
+  addUser: (newUser: UserType) => void;
 };
 
 export type AppContextProviderProps = {
@@ -68,6 +69,10 @@ export type FetchUsersAction = { type: 'users/loaded'; payload: UserType[] };
 export type SetCurrentUserAction = {
   type: 'user/set';
   payload: string | undefined;
+};
+export type AddNewUserAction = {
+  type: 'user/add';
+  payload: UserType;
 };
 
 export type FetchCountriesAction = {
@@ -85,11 +90,11 @@ export type FetchStatusesAction = {
   payload: StatusType[];
 };
 
-export type SetStatusModal = {
+export type SetStatusModalAction = {
   type: 'modal/setStatus';
   payload: ModalVariantsType;
 };
-export type CloseModal = {
+export type CloseModalAction = {
   type: 'modal/close';
 };
 
@@ -102,9 +107,10 @@ export type ActionType =
   | LoadingAction
   | FetchUsersAction
   | SetCurrentUserAction
+  | AddNewUserAction
   | FetchCountriesAction
   | FetchDepartmentseAction
   | FetchStatusesAction
-  | SetStatusModal
-  | CloseModal
+  | SetStatusModalAction
+  | CloseModalAction
   | RejectAction;

@@ -29,11 +29,11 @@ const StyledSelect = styled.select`
   border-radius: 2px;
 `;
 
-function Select({ objs, label, handlerSelect, defaultValue = '' }: SelectType) {
+function Select({ objs, label, handlerSelect, defaultValue }: SelectType) {
   return (
     <StyledSelectBox>
       <label htmlFor={label}>{label}</label>
-      <StyledSelect onChange={handlerSelect} value={defaultValue}>
+      <StyledSelect onChange={handlerSelect} defaultValue={defaultValue}>
         <option key="default0" value="">
           Select {label}
         </option>

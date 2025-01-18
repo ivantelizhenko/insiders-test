@@ -16,6 +16,7 @@ const Overlay = styled.div`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(2px);
+  z-index: 99;
 `;
 
 const Modal = styled.div`
@@ -28,6 +29,7 @@ const Modal = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0px 10px 20px rgb(0, 0, 0, 0.1);
+  z-index: 100;
 `;
 
 const ButtonBox = styled.div`
@@ -38,15 +40,39 @@ const ButtonBox = styled.div`
 `;
 
 function AddUserModal() {
-  const { closeModal } = useAppState();
+  const { closeModal, addUser } = useAppState();
 
   // TODO: Reusable Modal Window
+
+  function handleAdd() {
+    const testUser = {
+      id: Math.random().toString(),
+      name: 'Ivan Telizhenko',
+      status: {
+        name: 'Active',
+        value: 'ACTIVE',
+      },
+      department: {
+        name: 'Information Technology',
+        value: 'IT',
+      },
+      country: {
+        name: 'Ukraine',
+        value: 'UA',
+      },
+    };
+
+    addUser(testUser);
+  }
+
   return (
     <Overlay onClick={closeModal}>
-      <Modal>
+      <Modal onClick={e => e.stopPropagation()}>
         <AddUserForm />
         <ButtonBox>
-          <Button width="20rem">Add User</Button>
+          <Button width="20rem" onClick={handleAdd}>
+            Add User
+          </Button>
           <Button width="10rem" onClick={closeModal}>
             Undo
           </Button>
