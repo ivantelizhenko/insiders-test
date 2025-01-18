@@ -17,6 +17,7 @@ const initialState: AppStateType = {
   statuses: [],
   currentUser: {},
   isLoading: false,
+  showModalStatus: 'closedModal',
   error: '',
 };
 
@@ -36,6 +37,7 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
         currentUser: action.payload.at(0)!,
       };
     }
+
     // case 'user/set': {
     //   return {
     //     ...state,
@@ -63,6 +65,21 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
         statuses: action.payload,
       };
     }
+
+    case 'modal/setStatus': {
+      return {
+        ...state,
+
+        showModalStatus: action.payload,
+      };
+    }
+    case 'modal/close': {
+      return {
+        ...state,
+        showModalStatus: 'closedModal',
+      };
+    }
+
     case 'rejected': {
       return { ...state, isLoading: false, error: action.payload };
     }
@@ -105,9 +122,12 @@ function AppProvider({ children }: AppContextProviderProps) {
   const ctx: AppContextValueType = {
     ...appState,
 
-    // setCurrentUser(id) {
-    //   dispatch({ type: 'user/set', payload: id });
-    // },
+    setStatusModal(status) {
+      dispatch({ type: 'modal/setStatus', payload: status });
+    },
+    closeModal() {
+      dispatch({ type: 'modal/close' });
+    },
   };
 
   return <AppContext.Provider value={ctx}>{children}</AppContext.Provider>;

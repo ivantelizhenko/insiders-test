@@ -36,6 +36,8 @@ export type StatusType = {
   id: string;
 };
 
+export type ModalVariantsType = 'closedModal' | 'addUser';
+
 export type AppStateType = {
   users: UserType[];
   countries: CountryType[];
@@ -43,11 +45,13 @@ export type AppStateType = {
   statuses: StatusType[];
   isLoading: true | false;
   currentUser: Partial<UserType>;
+  showModalStatus: ModalVariantsType;
   error: string;
 };
 
 export type AppContextValueType = AppStateType & {
-  // setCurrentUser: (id: string) => void;
+  setStatusModal: (status: ModalVariantsType) => void;
+  closeModal: () => void;
 };
 
 export type AppContextProviderProps = {
@@ -80,6 +84,14 @@ export type FetchStatusesAction = {
   payload: StatusType[];
 };
 
+export type SetStatusModal = {
+  type: 'modal/setStatus';
+  payload: ModalVariantsType;
+};
+export type CloseModal = {
+  type: 'modal/close';
+};
+
 export type RejectAction = {
   type: 'rejected';
   payload: string;
@@ -92,4 +104,6 @@ export type ActionType =
   | FetchCountriesAction
   | FetchDepartmentseAction
   | FetchStatusesAction
+  | SetStatusModal
+  | CloseModal
   | RejectAction;

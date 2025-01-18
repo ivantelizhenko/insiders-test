@@ -21,7 +21,7 @@ const InputsBox = styled.div`
 
 function Form() {
   const { departments, statuses, countries, currentUser } = useAppState();
-  console.log(departments, statuses, countries);
+
   function onChange(e: FormEvent<HTMLFormElement>) {
     console.log(e.target);
   }

@@ -33,6 +33,9 @@ function Select({ objs, label, handlerSelect }: SelectType) {
     <StyledSelectBox>
       <label htmlFor={label}>{label}</label>
       <StyledSelect onChange={handlerSelect}>
+        <option key="default0" value="">
+          Select {label}
+        </option>
         {objs.map(el => {
           return (
             <option key={el.id} value={el.value || el.id}>

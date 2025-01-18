@@ -10,6 +10,9 @@ import { Button } from '../components/buttons/Button';
 
 import { TrashSvg } from '../components/helpers/Svgs';
 import UsersTable from '../components/table/userTable/UsersTable';
+import './Modal';
+import { createPortal } from 'react-dom';
+import AddUserModal from './AddUserModal';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -40,10 +43,15 @@ const StyledUsers = styled.div`
 `;
 
 function Users() {
-  const { departments, statuses, countries } = useAppState();
+  const { departments, statuses, countries, showModalStatus, setStatusModal } =
+    useAppState();
   // function onClick() {
   //   console.log('click');
   // }
+
+  function showAddUserModal() {
+    setStatusModal('addUser');
+  }
 
   return (
     <StyledUsers>
@@ -68,13 +76,15 @@ function Users() {
         </Button>
       </div>
       <div id="styledUsers-button">
-        <Button width="15rem" padding="1.4rem">
+        <Button width="15rem" padding="1.4rem" onClick={showAddUserModal}>
           Add User
         </Button>
       </div>
       <div id="styledUsers-table">
         <UsersTable />
       </div>
+      {showModalStatus === 'addUser' &&
+        createPortal(<AddUserModal />, document.body)}
     </StyledUsers>
   );
 }
