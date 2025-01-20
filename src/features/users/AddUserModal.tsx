@@ -5,10 +5,7 @@ import { useAppState } from '../../contexts/userContext/AppContext';
 import AddUserForm from './AddUserForm';
 
 const Overlay = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -21,9 +18,9 @@ const Overlay = styled.div`
 const Modal = styled.div`
   background-color: #fff;
   position: absolute;
-  top: 50%;
+  top: 20rem;
   right: 50%;
-  transform: translate(50%, -50%);
+  transform: translatex(50%);
   padding: 6rem 8rem;
   display: flex;
   flex-direction: column;

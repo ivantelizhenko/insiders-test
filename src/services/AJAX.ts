@@ -24,3 +24,15 @@ export async function sendJSON(url: string, upload: UserType) {
     console.error(`${(err as Error).message}⛔️⛔️⛔️`);
   }
 }
+export async function deleteJSON(url: string, id: string) {
+  try {
+    const res = await fetch(`${url}/${id}`, {
+      method: 'Delete',
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (!res.ok) throw new Error('Problem with delete data to server');
+  } catch (err) {
+    console.error(`${(err as Error).message}⛔️⛔️⛔️`);
+  }
+}
