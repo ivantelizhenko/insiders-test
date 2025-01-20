@@ -122,54 +122,6 @@
   ],
   "users": [
     {
-      "name": "John Doe",
-      "status": {
-        "name": "Active",
-        "value": "ACTIVE"
-      },
-      "department": {
-        "name": "Information Technology",
-        "value": "IT"
-      },
-      "country": {
-        "name": "United States",
-        "value": "US"
-      },
-      "id": "71ec"
-    },
-    {
-      "name": "Jane Smith",
-      "status": {
-        "name": "Disabled",
-        "value": "DISABLED"
-      },
-      "department": {
-        "name": "Finance",
-        "value": "FIN"
-      },
-      "country": {
-        "name": "Canada",
-        "value": "CA"
-      },
-      "id": "e0cc"
-    },
-    {
-      "name": "Alice Johnson",
-      "status": {
-        "name": "Active",
-        "value": "ACTIVE"
-      },
-      "department": {
-        "name": "Marketing",
-        "value": "MKT"
-      },
-      "country": {
-        "name": "United Kingdom",
-        "value": "GB"
-      },
-      "id": "3421"
-    },
-    {
       "name": "Bob Brown",
       "status": {
         "name": "All statuses",

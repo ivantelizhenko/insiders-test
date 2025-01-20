@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { createPortal } from 'react-dom';
 
 import AddUserModal from './AddUserModal';
+
 import UsersTable from './userTable/UsersTable';
 import { useAppState } from '../../contexts/userContext/AppContext';
 import Heading from '../../ui/Heading';
@@ -10,6 +11,7 @@ import FiltersBox from '../../ui/Filtersbox';
 import FilterBox from '../../ui/FilterBox';
 import { Button } from '../../ui/Button';
 import { TrashSvg } from '../../ui/Svgs';
+import ConfirmModal from '../../ui/ConfirmModal';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -40,12 +42,21 @@ const StyledUsers = styled.div`
 `;
 
 function Users() {
-  const { departments, statuses, countries, showModalStatus, setStatusModal } =
-    useAppState();
+  const {
+    departments,
+    statuses,
+    countries,
+    showModalStatus,
+    setStatusModal,
+    currentUser,
+    closeModal,
+    deleteUser,
+  } = useAppState();
 
-  // function onClick() {
-  //   console.log('click');
-  // }
+  function handleDeleteUser() {
+    deleteUser(currentUser.id!);
+    closeModal();
+  }
 
   function showAddUserModal() {
     setStatusModal('addUser');
@@ -83,6 +94,11 @@ function Users() {
       </div>
       {showModalStatus === 'addUser' &&
         createPortal(<AddUserModal />, document.body)}
+      {showModalStatus === 'confirmation' &&
+        createPortal(
+          <ConfirmModal handleAccept={handleDeleteUser} />,
+          document.body
+        )}
     </StyledUsers>
   );
 }

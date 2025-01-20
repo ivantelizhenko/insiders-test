@@ -1,44 +1,11 @@
-import styled from 'styled-components';
-
-import { useAppState } from '../../contexts/userContext/AppContext';
-
+import Modal from '../../ui/Modal';
 import AddUserForm from './AddUserForm';
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(2px);
-  z-index: 99;
-`;
-
-const Modal = styled.div`
-  background-color: #fff;
-  position: absolute;
-  top: 20rem;
-  right: 50%;
-  transform: translatex(50%);
-  padding: 6rem 8rem;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 10px 20px rgb(0, 0, 0, 0.1);
-  z-index: 100;
-`;
-
 function AddUserModal() {
-  const { closeModal } = useAppState();
-
-  // TODO: Reusable Modal Window
-
   return (
-    <Overlay onClick={closeModal}>
-      <Modal onClick={e => e.stopPropagation()}>
-        <AddUserForm />
-      </Modal>
-    </Overlay>
+    <Modal>
+      <AddUserForm />
+    </Modal>
   );
 }
 

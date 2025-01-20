@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Button } from '../../../ui/Button';
 import { TrashSvg } from '../../../ui/Svgs';
 import { UserType } from '../../../contexts/userContext/AppContextTypes';
+import { useAppState } from '../../../contexts/userContext/AppContext';
 
 const StyledUserListItem = styled.li`
   display: grid;
@@ -25,7 +26,13 @@ const StyledUserListItem = styled.li`
 `;
 
 function UserListItem({ user }: { user: UserType }) {
-  const { name, department, country, status } = user;
+  const { name, department, country, status, id } = user;
+  const { setStatusModal, setCurrentUser } = useAppState();
+
+  function showAddUserModal() {
+    setStatusModal('confirmation');
+    setCurrentUser(id);
+  }
 
   return (
     <StyledUserListItem>
@@ -33,7 +40,12 @@ function UserListItem({ user }: { user: UserType }) {
       <p>{department.name}</p>
       <p>{country.name}</p>
       <p>{status.name}</p>
-      <Button width="5rem" padding="1.4rem" height="100%">
+      <Button
+        width="5rem"
+        padding="1.4rem"
+        height="100%"
+        onClick={showAddUserModal}
+      >
         <TrashSvg />
       </Button>
     </StyledUserListItem>

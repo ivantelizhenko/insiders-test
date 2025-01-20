@@ -1,63 +1,43 @@
 import styled from 'styled-components';
+import { useAppState } from '../contexts/userContext/AppContext';
+import { ReactNode } from 'react';
 
-import {
-  cloneElement,
-  createContext,
-  ReactNode,
-  useContext,
-  useState,
-} from 'react';
-import { ModalVariantsType } from '../../contexts/userContext/AppContextTypes';
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+`;
 
-const StyledModal = styled.div``;
+const StyledModal = styled.div`
+  background-color: #fff;
+  position: absolute;
+  top: 20rem;
+  right: 50%;
+  transform: translatex(50%);
+  padding: 6rem 8rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 10px 20px rgb(0, 0, 0, 0.1);
+  z-index: 100;
+`;
 
-const StyledOverlay = styled.div``;
-
-type ModalContextType = {
-  openName: ModalVariantsType;
-  open: (name: ModalVariantsType) => void;
-  close: () => void;
-};
-
-const ModalContext = createContext<ModalContextType | null>(null);
-
-function Modal({ children }: { children: ReactNode }) {
-  const [openName, setOpenName] = useState<ModalVariantsType>('closedModal');
-
-  function close() {
-    setOpenName('closedModal');
-  }
-  function open(name: ModalVariantsType) {
-    setOpenName(name);
-  }
-
-  const ctx: ModalContextType = { openName, close, open };
-
-  return <ModalContext.Provider value={ctx}>{children}</ModalContext.Provider>;
-}
-
-type OpenPropsType = {
+type ModalProps = {
   children: ReactNode;
-  opens: string;
 };
 
-function Open({ children, opens: opensWindowName }: OpenPropsType) {
-  const { open } = useContext(ModalContext);
+function Modal({ children }: ModalProps) {
+  const { closeModal } = useAppState();
 
-  return cloneElement(children, {
-    onClick: () => {
-      open(opensWindowName);
-    },
-  });
+  return (
+    <Overlay onClick={closeModal}>
+      <StyledModal onClick={e => e.stopPropagation()}>{children}</StyledModal>
+    </Overlay>
+  );
 }
 
-Modal.Open = Open;
 export default Modal;
-
-// return (
-//   <StyledOverlay>
-//     <Button width="4.8rem">Close</Button>
-
-//     <StyledModal>Modal</StyledModal>
-//   </StyledOverlay>
-// );
