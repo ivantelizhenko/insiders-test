@@ -312,38 +312,6 @@
         "value": "CA"
       },
       "id": "e928"
-    },
-    {
-      "id": "0.7947003150570028",
-      "name": "Ivan Telizhenko",
-      "status": {
-        "name": "Active",
-        "value": "ACTIVE"
-      },
-      "department": {
-        "name": "Information Technology",
-        "value": "IT"
-      },
-      "country": {
-        "name": "Ukraine",
-        "value": "UA"
-      }
-    },
-    {
-      "id": "0.5068753250063971",
-      "name": "Ivan Telizhenko",
-      "status": {
-        "name": "Active",
-        "value": "ACTIVE"
-      },
-      "department": {
-        "name": "Information Technology",
-        "value": "IT"
-      },
-      "country": {
-        "name": "Ukraine",
-        "value": "UA"
-      }
     }
   ]
 }

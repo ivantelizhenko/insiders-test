@@ -6,9 +6,10 @@ type SelectType = {
   defaultValue?: string;
   objs: { name: string; id: string; value?: string }[];
   handlerSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
+  required?: true | false;
 };
 
-const StyledSelectBox = styled.form`
+const StyledSelectBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -29,12 +30,24 @@ const StyledSelect = styled.select`
   border-radius: 2px;
 `;
 
-function Select({ objs, label, handlerSelect, defaultValue }: SelectType) {
+function Select({
+  objs,
+  label,
+  handlerSelect,
+  defaultValue,
+  required = false,
+}: SelectType) {
   return (
     <StyledSelectBox>
       <label htmlFor={label}>{label}</label>
-      <StyledSelect onChange={handlerSelect} defaultValue={defaultValue}>
-        <option key="default0" value="">
+      <StyledSelect
+        onChange={handlerSelect}
+        defaultValue={defaultValue}
+        required={required}
+        data-selection_name={label}
+        data-selection_objs={JSON.stringify(objs)}
+      >
+        <option key="default0" value="" data-name="">
           Select {label}
         </option>
         {objs.map(el => {

@@ -1,14 +1,24 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import styled from 'styled-components';
 
 import { useAppState } from '../../contexts/userContext/AppContext';
+import { UserType } from '../../contexts/userContext/AppContextTypes';
 
 import Form from '../../ui/Form';
 import Input from '../../ui/Input';
 import Select from '../../ui/Select';
-import { UserType } from '../../contexts/userContext/AppContextTypes';
+import { Button } from '../../ui/Button';
+
+const ButtonBox = styled.div`
+  gap: 1rem;
+  display: flex;
+  justify-content: end;
+  grid-column: 1/-1;
+`;
 
 function AddUserForm() {
-  const { departments, statuses, countries } = useAppState();
+  const { departments, statuses, countries, closeModal, addUser } =
+    useAppState();
   const [newUser, setNewUser] = useState<UserType>({
     id: Math.random().toString(),
     name: '',
@@ -26,29 +36,64 @@ function AddUserForm() {
     },
   });
 
-  function onChange(e: React.ChangeEvent<HTMLFormElement>) {
-    setNewUser(prevData => ({ ...prevData, name: e.target.value }));
+  function onChange(e: ChangeEvent<HTMLInputElement>) {
+    const inputName = e.target.value;
+
+    setNewUser(prevData => ({ ...prevData, name: inputName }));
   }
 
-  function test(e: ChangeEvent<HTMLSelectElement>) {
-    console.log(e.target.value);
+  function setFromSelect(e: ChangeEvent<HTMLSelectElement>) {
+    const curOptionValue = e.target.value;
+    const curSelectName = e.target.dataset.selection_name?.toLowerCase();
+    const curSelectObjs = JSON.parse(e.target.dataset.selection_objs!);
+    const curOption = curSelectObjs.find(
+      (el: { name: string; value: string; id: string }) =>
+        el.value === curOptionValue
+    );
+    setNewUser(prevData => ({ ...prevData, [`${curSelectName}`]: curOption }));
   }
 
-  // function handleChange(e: { e: FormEvent<HTMLFormElement> }) {
-  //   console.log(e);
-  // }
+  // TODO: Reusable Modal Window
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    addUser(newUser);
+    closeModal();
+  }
 
   return (
-    <Form title="User Information">
+    <Form title="User Information" handleSubmit={handleSubmit}>
       <Input
+        required={true}
         label="Full Name"
         defaultValue=""
         type="text"
         handleChange={onChange}
       />
-      <Select label="Department" objs={departments} handlerSelect={test} />
-      <Select label="Country" objs={countries} handlerSelect={test} />
-      <Select label="Status" objs={statuses} handlerSelect={test} />
+      <Select
+        label="Department"
+        objs={departments}
+        handlerSelect={setFromSelect}
+        required={true}
+      />
+      <Select
+        label="Country"
+        objs={countries}
+        handlerSelect={setFromSelect}
+        required={true}
+      />
+      <Select
+        label="Status"
+        objs={statuses}
+        handlerSelect={setFromSelect}
+        required={true}
+      />
+      <ButtonBox>
+        <Button width="20rem">Add User</Button>
+        <Button width="10rem" onClick={closeModal}>
+          Undo
+        </Button>
+      </ButtonBox>
     </Form>
   );
 }

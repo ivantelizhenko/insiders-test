@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { ReactNode } from 'react';
+import { FormEvent, ReactNode } from 'react';
 
 import Heading from './Heading';
 
-const StyledForm = styled.div`
+const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -17,9 +17,19 @@ const InputsBox = styled.div`
   column-gap: 2rem;
 `;
 
-function Form({ title, children }: { title: string; children: ReactNode }) {
+// type ArgSubmitFn<T> = (arg: T) => void;
+
+type FormProps = {
+  title: string;
+  children: ReactNode;
+  handleSubmit: (e: FormEvent) => void;
+  // onSubmit: ArgSubmitFn<T>;
+};
+
+// function Form<T>({ title, children, onSubmit }: FormProps<T>) {
+function Form({ title, children, handleSubmit }: FormProps) {
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <Heading as="h3">{title}</Heading>
       <InputsBox>{children}</InputsBox>
     </StyledForm>

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useAppState } from '../../contexts/userContext/AppContext';
 
 import AddUserForm from './AddUserForm';
-import { Button } from '../../ui/Button';
 
 const Overlay = styled.div`
   position: absolute;
@@ -32,51 +31,15 @@ const Modal = styled.div`
   z-index: 100;
 `;
 
-const ButtonBox = styled.div`
-  margin-top: 2rem;
-  gap: 1rem;
-  display: flex;
-  justify-content: end;
-`;
-
 function AddUserModal() {
-  const { closeModal, addUser } = useAppState();
+  const { closeModal } = useAppState();
 
   // TODO: Reusable Modal Window
-
-  function handleAdd() {
-    const testUser = {
-      id: Math.random().toString(),
-      name: 'Ivan Telizhenko',
-      status: {
-        name: 'Active',
-        value: 'ACTIVE',
-      },
-      department: {
-        name: 'Information Technology',
-        value: 'IT',
-      },
-      country: {
-        name: 'Ukraine',
-        value: 'UA',
-      },
-    };
-
-    addUser(testUser);
-  }
 
   return (
     <Overlay onClick={closeModal}>
       <Modal onClick={e => e.stopPropagation()}>
         <AddUserForm />
-        <ButtonBox>
-          <Button width="20rem" onClick={handleAdd}>
-            Add User
-          </Button>
-          <Button width="10rem" onClick={closeModal}>
-            Undo
-          </Button>
-        </ButtonBox>
       </Modal>
     </Overlay>
   );
