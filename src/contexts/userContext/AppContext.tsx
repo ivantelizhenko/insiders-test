@@ -13,7 +13,11 @@ import {
 } from './AppContextTypes';
 import { API_URL } from '../../utils/constants';
 import { getJSON } from '../../services/AJAX';
-import { addUserAPI, deleteUserAPI } from '../../services/APIUsers';
+import {
+  addUserAPI,
+  deleteUserAPI,
+  updateUserAPI,
+} from '../../services/APIUsers';
 
 const AppContext = createContext<AppContextValueType | null>(null);
 
@@ -45,6 +49,7 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
     }
 
     case 'user/set': {
+      if (action.payload === '') return { ...state, currentUser: {} };
       return {
         ...state,
         currentUser: state.users.find(user => user.id === action.payload)!,
@@ -61,6 +66,17 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
       return {
         ...state,
         users: state.users.filter(user => user.id !== action.payload),
+      };
+    }
+    case 'user/update': {
+      const updatedUserIndex = state.users.findIndex(
+        user => user.id === action.payload.id
+      );
+      // TODO: Add comparison for old user and updated user
+      state.users.splice(updatedUserIndex, 1, action.payload.updatedUser);
+      return {
+        ...state,
+        users: state.users,
       };
     }
     case 'countries/loaded': {
@@ -157,6 +173,11 @@ function AppProvider({ children }: AppContextProviderProps) {
     deleteUser(id) {
       deleteUserAPI(id);
       dispatch({ type: 'user/delete', payload: id });
+    },
+
+    updateUser(id, updatedUser) {
+      updateUserAPI(id, updatedUser);
+      dispatch({ type: 'user/update', payload: { id, updatedUser } });
     },
   };
 

@@ -36,3 +36,17 @@ export async function deleteJSON(url: string, id: string) {
     console.error(`${(err as Error).message}⛔️⛔️⛔️`);
   }
 }
+export async function updateJSON(url: string, id: string, upload: UserType) {
+  try {
+    const res = await fetch(`${url}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(upload),
+    });
+
+    if (!res.ok)
+      throw new Error('Problem with sending updating data in the server');
+  } catch (err) {
+    console.error(`${(err as Error).message}⛔️⛔️⛔️`);
+  }
+}

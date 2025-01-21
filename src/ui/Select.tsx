@@ -1,19 +1,19 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 type SelectType = {
   label: string;
-  defaultValue?: string;
   objs: { name: string; id: string; value?: string }[];
   handlerSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
   required?: true | false;
+  defaultValue?: string;
 };
 
 const StyledSelectBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  width: 50rem;
+  width: 100%;
 
   color: #5e626b;
   font-size: 1.4rem;
@@ -34,16 +34,28 @@ function Select({
   objs,
   label,
   handlerSelect,
-  defaultValue,
   required = false,
+  defaultValue,
 }: SelectType) {
+  const [curValue, setCurValue] = useState(defaultValue);
+
+  useEffect(() => {
+    setCurValue(defaultValue);
+  }, [defaultValue]);
+
+  function handleSelectHere(e: ChangeEvent<HTMLSelectElement>) {
+    setCurValue(e.target.value);
+    handlerSelect(e);
+  }
+
   return (
     <StyledSelectBox>
       <label htmlFor={label}>{label}</label>
       <StyledSelect
-        onChange={handlerSelect}
-        defaultValue={defaultValue}
+        id={label}
+        onChange={handleSelectHere}
         required={required}
+        value={curValue}
         data-selection_name={label}
         data-selection_objs={JSON.stringify(objs)}
       >

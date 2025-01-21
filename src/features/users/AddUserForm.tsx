@@ -53,8 +53,6 @@ function AddUserForm() {
     setNewUser(prevData => ({ ...prevData, [`${curSelectName}`]: curOption }));
   }
 
-  // TODO: Reusable Modal Window
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     addUser(newUser);
@@ -66,7 +64,6 @@ function AddUserForm() {
       <Input
         required={true}
         label="Full Name"
-        defaultValue=""
         type="text"
         handleChange={onChange}
       />

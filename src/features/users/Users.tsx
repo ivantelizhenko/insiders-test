@@ -12,6 +12,7 @@ import FilterBox from '../../ui/FilterBox';
 import { Button } from '../../ui/Button';
 import { TrashSvg } from '../../ui/Svgs';
 import ConfirmModal from '../../ui/ConfirmModal';
+import { useSearchParams } from 'react-router';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -48,13 +49,13 @@ function Users() {
     countries,
     showModalStatus,
     setStatusModal,
-    currentUser,
     closeModal,
     deleteUser,
   } = useAppState();
+  const [searchParams] = useSearchParams();
 
   function handleDeleteUser() {
-    deleteUser(currentUser.id!);
+    deleteUser(searchParams.get('id')!);
     closeModal();
   }
 

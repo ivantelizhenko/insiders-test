@@ -14,6 +14,7 @@ const Overlay = styled.div`
 `;
 
 const StyledModal = styled.div`
+  width: 75%;
   background-color: #fff;
   position: absolute;
   top: 20rem;

@@ -17,16 +17,12 @@ const InputsBox = styled.div`
   column-gap: 2rem;
 `;
 
-// type ArgSubmitFn<T> = (arg: T) => void;
-
 type FormProps = {
   title: string;
   children: ReactNode;
   handleSubmit: (e: FormEvent) => void;
-  // onSubmit: ArgSubmitFn<T>;
 };
 
-// function Form<T>({ title, children, onSubmit }: FormProps<T>) {
 function Form({ title, children, handleSubmit }: FormProps) {
   return (
     <StyledForm onSubmit={handleSubmit}>

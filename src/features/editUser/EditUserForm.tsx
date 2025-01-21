@@ -1,48 +1,100 @@
-import { ChangeEvent, FormEvent } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from 'react';
 
 import { useAppState } from '../../contexts/userContext/AppContext';
 
 import Input from '../../ui/Input';
 import Select from '../../ui/Select';
 import Form from '../../ui/Form';
+import { Button } from '../../ui/Button';
+import styled from 'styled-components';
+import { UserType } from '../../contexts/userContext/AppContextTypes';
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  gap: 2rem;
+  grid-column: 1/-1;
+`;
 
 function EditUserForm() {
-  const { departments, statuses, countries, currentUser } = useAppState();
+  const { departments, statuses, countries, currentUser, updateUser } =
+    useAppState();
+  const [updatedUser, setUpdatedUser] = useState(currentUser);
 
-  function onChange(e: FormEvent<HTMLFormElement>) {
-    console.log(e.target);
+  useEffect(() => {
+    setUpdatedUser(currentUser);
+    console.log(currentUser.name);
+  }, [currentUser]);
+
+  function changeName(e: ChangeEvent<HTMLInputElement>) {
+    setUpdatedUser(prev => ({ ...prev, name: e.target.value }));
   }
 
-  function test(e: ChangeEvent<HTMLSelectElement>) {
-    console.log(e.target.value);
+  function setFromSelect(e: ChangeEvent<HTMLSelectElement>) {
+    const curOptionValue = e.target.value;
+    const curSelectName = e.target.dataset.selection_name?.toLowerCase();
+    const curSelectObjs = JSON.parse(e.target.dataset.selection_objs!);
+    const curOption = curSelectObjs.find(
+      (el: { name: string; value: string; id: string }) =>
+        el.value === curOptionValue
+    );
+    setUpdatedUser(prevData => ({
+      ...prevData,
+      [`${curSelectName}`]: curOption,
+    }));
   }
 
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    updateUser(currentUser.id!, updatedUser as UserType);
+  }
+
+  function handleDecline(e: SyntheticEvent) {
+    e.preventDefault();
+    setUpdatedUser(currentUser);
+  }
   return (
-    <Form title="User Information">
+    <Form title="User Information" handleSubmit={handleSubmit}>
       <Input
+        required={true}
         label="Full Name"
-        defaultValue={currentUser?.name}
+        defaultValue={updatedUser.name}
         type="text"
-        handleChange={onChange}
+        handleChange={changeName}
       />
       <Select
+        required={true}
         label="Department"
         objs={departments}
-        handlerSelect={test}
-        defaultValue={currentUser?.department?.value}
+        handlerSelect={setFromSelect}
+        defaultValue={updatedUser?.department?.value}
       />
       <Select
+        required={true}
         label="Country"
         objs={countries}
-        handlerSelect={test}
-        defaultValue={currentUser?.country?.value}
+        handlerSelect={setFromSelect}
+        defaultValue={updatedUser?.country?.value}
       />
       <Select
         label="Status"
+        required={true}
         objs={statuses}
-        handlerSelect={test}
-        defaultValue={currentUser?.status?.value}
+        handlerSelect={setFromSelect}
+        defaultValue={updatedUser?.status?.value}
       />
+      <ButtonsContainer>
+        <Button width="20rem">Save</Button>
+        <Button width="10rem" onClick={handleDecline}>
+          Undo
+        </Button>
+      </ButtonsContainer>
     </Form>
   );
 }

@@ -55,6 +55,7 @@ export type AppContextValueType = AppStateType & {
   setCurrentUser: (id: string | undefined) => void;
   addUser: (newUser: UserType) => void;
   deleteUser: (id: string) => void;
+  updateUser: (id: string, updatedUser: UserType) => void;
 };
 
 export type AppContextProviderProps = {
@@ -78,6 +79,11 @@ export type AddNewUserAction = {
 export type DeleteUserAction = {
   type: 'user/delete';
   payload: string;
+};
+
+export type UpdateUserAction = {
+  type: 'user/update';
+  payload: { id: string; updatedUser: UserType };
 };
 
 export type FetchCountriesAction = {
@@ -114,6 +120,7 @@ export type ActionType =
   | SetCurrentUserAction
   | AddNewUserAction
   | DeleteUserAction
+  | UpdateUserAction
   | FetchCountriesAction
   | FetchDepartmentseAction
   | FetchStatusesAction

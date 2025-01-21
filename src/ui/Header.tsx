@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 
 import { Button } from './Button';
 import { useAppState } from '../contexts/userContext/AppContext';
@@ -15,17 +15,21 @@ const StyledHeader = styled.header`
 
 function Header() {
   const navigate = useNavigate();
-  const { currentUser, users } = useAppState();
+  const { users, setCurrentUser } = useAppState();
+
+  const [searchParams] = useSearchParams();
 
   function handleNavigate(path: string) {
     navigate(path);
+    searchParams.delete('id');
+    setCurrentUser('');
   }
 
   return (
     <StyledHeader>
       <Button
         disabled={users.length === 0}
-        onClick={() => handleNavigate(`edit/${currentUser.id}`)}
+        onClick={() => handleNavigate(`edit`)}
         width="20rem"
       >
         Edit Users

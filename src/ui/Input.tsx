@@ -1,11 +1,11 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 type InputProps = {
   label: string;
   type: string;
   required?: true | false;
-  defaultValue: string | undefined;
+  defaultValue?: string | undefined;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -13,7 +13,7 @@ const StyledInputBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  width: 50rem;
+  width: 100%;
 
   color: #5e626b;
   font-size: 1.4rem;
@@ -35,15 +35,26 @@ function Input({
   handleChange,
   required = false,
 }: InputProps) {
+  const [curValue, setCurValue] = useState(defaultValue);
+
+  useEffect(() => {
+    setCurValue(defaultValue);
+  }, [defaultValue]);
+
+  function handleChangeHere(e: ChangeEvent<HTMLInputElement>) {
+    setCurValue(e.target.value);
+    handleChange(e);
+  }
+
   return (
     <StyledInputBox>
       <label htmlFor={label}>{label}</label>
       <StyledInput
         type={type}
         id={label}
-        defaultValue={defaultValue}
+        value={curValue}
         required={required}
-        onChange={handleChange}
+        onChange={handleChangeHere}
       />
     </StyledInputBox>
   );
