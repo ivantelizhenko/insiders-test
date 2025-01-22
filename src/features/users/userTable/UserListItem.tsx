@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { Button } from '../../../ui/Button';
 import { TrashSvg } from '../../../ui/Svgs';
 import { UserType } from '../../../contexts/userContext/AppContextTypes';
-import { useAppState } from '../../../contexts/userContext/AppContext';
 import { useSearchParams } from 'react-router';
+import { useModal } from '../../../contexts/modalContext/ModalContext';
 
 const StyledUserListItem = styled.li`
   display: grid;
@@ -28,7 +28,7 @@ const StyledUserListItem = styled.li`
 
 function UserListItem({ user }: { user: UserType }) {
   const { name, department, country, status, id } = user;
-  const { setStatusModal } = useAppState();
+  const { setStatusModal } = useModal();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_searchParams, setSearchParams] = useSearchParams();

@@ -31,9 +31,6 @@ function EditUserForm() {
     setUpdatedUser(currentUser);
   }, [currentUser]);
 
-  console.log(`Updated user: ${JSON.stringify(updatedUser)}`);
-  console.log(`Current user: ${JSON.stringify(currentUser)}`);
-
   function changeName(e: ChangeEvent<HTMLInputElement>) {
     setUpdatedUser(prev => ({ ...prev, name: e.target.value }));
   }

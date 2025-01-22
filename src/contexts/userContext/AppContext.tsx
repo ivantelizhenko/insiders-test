@@ -28,7 +28,6 @@ const initialState: AppStateType = {
   statuses: [],
   currentUser: {},
   isLoading: false,
-  showModalStatus: 'closedModal',
   error: '',
 };
 
@@ -72,7 +71,6 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
       const updatedUserIndex = state.users.findIndex(
         user => user.id === action.payload.id
       );
-      // TODO: Add comparison for old user and updated user
       state.users.splice(updatedUserIndex, 1, action.payload.updatedUser);
       return {
         ...state,
@@ -98,20 +96,6 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
         ...state,
         isLoading: false,
         statuses: action.payload,
-      };
-    }
-
-    case 'modal/setStatus': {
-      return {
-        ...state,
-
-        showModalStatus: action.payload,
-      };
-    }
-    case 'modal/close': {
-      return {
-        ...state,
-        showModalStatus: 'closedModal',
       };
     }
 
@@ -157,12 +141,6 @@ function AppProvider({ children }: AppContextProviderProps) {
   const ctx: AppContextValueType = {
     ...appState,
 
-    setStatusModal(status) {
-      dispatch({ type: 'modal/setStatus', payload: status });
-    },
-    closeModal() {
-      dispatch({ type: 'modal/close' });
-    },
     setCurrentUser: useCallback(id => {
       dispatch({ type: 'user/set', payload: id });
     }, []),

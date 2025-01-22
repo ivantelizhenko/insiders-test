@@ -13,6 +13,7 @@ import { Button } from '../../ui/Button';
 import { TrashSvg } from '../../ui/Svgs';
 import ConfirmModal from '../../ui/ConfirmModal';
 import { useSearchParams } from 'react-router';
+import { useModal } from '../../contexts/modalContext/ModalContext';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -47,11 +48,10 @@ function Users() {
     departments,
     statuses,
     countries,
-    showModalStatus,
-    setStatusModal,
-    closeModal,
+
     deleteUser,
   } = useAppState();
+  const { modalStatus, setStatusModal, closeModal } = useModal();
   const [searchParams] = useSearchParams();
 
   function handleDeleteUser() {
@@ -93,9 +93,9 @@ function Users() {
       <div id="styledUsers-table">
         <UsersTable />
       </div>
-      {showModalStatus === 'addUser' &&
+      {modalStatus === 'addUser' &&
         createPortal(<AddUserModal />, document.body)}
-      {showModalStatus === 'confirmation' &&
+      {modalStatus === 'confirmation' &&
         createPortal(
           <ConfirmModal handleAccept={handleDeleteUser} />,
           document.body

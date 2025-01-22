@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
 import Filter from './Filter';
@@ -29,6 +29,10 @@ function FilterBox({ name, data }: FilterBoxProps) {
     setShowWindow(prevState => !prevState);
   }
 
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    console.log(e.target.value);
+  }
+
   return (
     <StyledFilterBox>
       <Button onClick={handleClick} width="auto" padding="1rem" height="4.8rem">
@@ -37,7 +41,12 @@ function FilterBox({ name, data }: FilterBoxProps) {
       {showWindow && (
         <ul>
           {data.map((el: { name: string; value: string }) => (
-            <Filter key={el.name} label={el.name} value={el.value || el.name} />
+            <Filter
+              key={el.name}
+              label={el.name}
+              value={el.value || el.name}
+              handleChange={handleChange}
+            />
           ))}
         </ul>
       )}

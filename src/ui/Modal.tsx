@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { useAppState } from '../contexts/userContext/AppContext';
 import { ReactNode } from 'react';
+import { useModal } from '../contexts/modalContext/ModalContext';
 
 const Overlay = styled.div`
   position: fixed;
@@ -32,7 +32,7 @@ type ModalProps = {
 };
 
 function Modal({ children }: ModalProps) {
-  const { closeModal } = useAppState();
+  const { closeModal } = useModal();
 
   return (
     <Overlay onClick={closeModal}>

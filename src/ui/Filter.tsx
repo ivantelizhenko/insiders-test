@@ -1,6 +1,11 @@
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-type Filter = { label: string; value: string };
+type Filter = {
+  label: string;
+  value: string;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
 const StyledFilter = styled.li`
   display: flex;
@@ -25,12 +30,12 @@ const StyledFilter = styled.li`
   }
 `;
 
-function Filter({ label, value }: Filter) {
+function Filter({ label, value, handleChange }: Filter) {
   return (
     <StyledFilter>
-      <input type="checkbox" value={value} />
+      <input id={label} type="checkbox" value={value} onChange={handleChange} />
       <span className="checkmark"></span>
-      <label>{label}</label>
+      <label htmlFor={label}>{label}</label>
     </StyledFilter>
   );
 }
