@@ -89,9 +89,19 @@ function EditUserForm() {
         handlerSelect={setFromSelect}
         defaultValue={updatedUser?.status?.value}
       />
+
       <ButtonsContainer>
-        <Button width="20rem">Save</Button>
-        <Button width="10rem" onClick={handleDecline}>
+        <Button
+          width="20rem"
+          disabled={JSON.stringify(updatedUser) === JSON.stringify(currentUser)}
+        >
+          Save
+        </Button>
+        <Button
+          width="10rem"
+          onClick={handleDecline}
+          disabled={JSON.stringify(updatedUser) === JSON.stringify(currentUser)}
+        >
           Undo
         </Button>
       </ButtonsContainer>
