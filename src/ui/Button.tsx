@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-type ButtonProps = { width: string; padding?: string; height?: string };
+type ButtonProps = {
+  width: string;
+  padding?: string;
+  height?: string;
+  selected?: boolean;
+};
 
 export const Button = styled.button<ButtonProps>`
   border: 1px solid #c4c4c4;
@@ -14,7 +19,7 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
 
   color: #000;
-  background-color: #fff;
+  background-color: ${props => (props.selected ? '#c4c4c4' : '#fff')};
 
   font-weight: 300;
   font-size: 1.4rem;
@@ -28,7 +33,6 @@ export const Button = styled.button<ButtonProps>`
   }
 
   &:disabled {
-    background-color: #e3e8ee;
     color: #c4c4c4;
   }
 `;

@@ -4,6 +4,8 @@ import { useNavigate, useSearchParams } from 'react-router';
 import { Button } from './Button';
 import { useAppState } from '../contexts/userContext/AppContext';
 
+import { useLocation } from 'react-router';
+
 const StyledHeader = styled.header`
   display: flex;
   border-bottom: 1px solid #000;
@@ -16,8 +18,9 @@ const StyledHeader = styled.header`
 function Header() {
   const navigate = useNavigate();
   const { users, setCurrentUser } = useAppState();
-
   const [searchParams] = useSearchParams();
+  const { pathname } = useLocation();
+  const curPage = pathname.split('/').at(-1);
 
   function handleNavigate(path: string) {
     navigate(path);
@@ -31,10 +34,15 @@ function Header() {
         disabled={users.length === 0}
         onClick={() => handleNavigate(`edit`)}
         width="20rem"
+        selected={curPage === 'edit'}
       >
         Edit Users
       </Button>
-      <Button onClick={() => handleNavigate('users')} width="20rem">
+      <Button
+        onClick={() => handleNavigate('users')}
+        width="20rem"
+        selected={curPage === 'users'}
+      >
         Users
       </Button>
     </StyledHeader>
