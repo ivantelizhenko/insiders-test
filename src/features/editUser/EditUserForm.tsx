@@ -29,8 +29,10 @@ function EditUserForm() {
 
   useEffect(() => {
     setUpdatedUser(currentUser);
-    console.log(currentUser.name);
   }, [currentUser]);
+
+  console.log(`Updated user: ${JSON.stringify(updatedUser)}`);
+  console.log(`Current user: ${JSON.stringify(currentUser)}`);
 
   function changeName(e: ChangeEvent<HTMLInputElement>) {
     setUpdatedUser(prev => ({ ...prev, name: e.target.value }));
@@ -46,7 +48,7 @@ function EditUserForm() {
     );
     setUpdatedUser(prevData => ({
       ...prevData,
-      [`${curSelectName}`]: curOption,
+      [`${curSelectName}`]: { name: curOption.name, value: curOption.value },
     }));
   }
 

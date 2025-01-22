@@ -17,8 +17,9 @@ const StyledHeader = styled.header`
 
 function Header() {
   const navigate = useNavigate();
-  const { users, setCurrentUser } = useAppState();
   const [searchParams] = useSearchParams();
+  const { users, setCurrentUser } = useAppState();
+
   const { pathname } = useLocation();
   const curPage = pathname.split('/').at(-1);
 

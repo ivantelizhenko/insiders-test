@@ -50,7 +50,10 @@ function AddUserForm() {
       (el: { name: string; value: string; id: string }) =>
         el.value === curOptionValue
     );
-    setNewUser(prevData => ({ ...prevData, [`${curSelectName}`]: curOption }));
+    setNewUser(prevData => ({
+      ...prevData,
+      [`${curSelectName}`]: { name: curOption.name, value: curOption.name },
+    }));
   }
 
   function handleSubmit(e: FormEvent) {
