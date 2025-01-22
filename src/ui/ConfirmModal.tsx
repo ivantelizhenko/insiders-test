@@ -7,6 +7,8 @@ import Heading from './Heading';
 const StyledConfirmModal = styled.div`
   display: flex;
   margin-top: 5rem;
+  width: 100%;
+  justify-content: center;
   gap: 8rem;
 `;
 

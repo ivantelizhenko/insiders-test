@@ -6,6 +6,7 @@ import { useAppState } from '../../contexts/userContext/AppContext';
 import EditUserForm from './EditUserForm';
 import Heading from '../../ui/Heading';
 import Select from '../../ui/Select';
+import { useNavigate } from 'react-router';
 
 const StyledEditUsers = styled.div`
   display: flex;
@@ -28,6 +29,9 @@ const EditUsersInputsContainer = styled.div`
 
 function EditUsers() {
   const { users, setCurrentUser, currentUser } = useAppState();
+  const navigate = useNavigate();
+
+  if (users.length === 0) navigate('/app/users');
 
   const usersTransform = users.map(user => ({
     id: user.id,
