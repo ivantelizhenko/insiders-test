@@ -1,4 +1,4 @@
-import { UserType } from '../contexts/userContext/AppContextTypes';
+import { UserType } from '../contexts/appContext/AppContextTypes';
 
 export async function getJSON(url: string) {
   try {

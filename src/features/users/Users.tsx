@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import AddUserModal from './AddUserModal';
 
 import UsersTable from './userTable/UsersTable';
-import { useAppState } from '../../contexts/userContext/AppContext';
+import { useAppState } from '../../contexts/appContext/AppContext';
 import Heading from '../../ui/Heading';
 import Message from '../../ui/Message';
 import FiltersBox from '../../ui/Filtersbox';

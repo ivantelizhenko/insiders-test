@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 import Loader from './Loader';
 import Header from './Header';
-import { useAppState } from '../contexts/userContext/AppContext';
+import { useAppState } from '../contexts/appContext/AppContext';
 
 const StyledAppLayout = styled.div`
   font-family: 'Rubik', serif;

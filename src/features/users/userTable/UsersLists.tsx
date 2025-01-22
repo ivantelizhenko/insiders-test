@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import UserListItem from './UserListItem';
-import { useAppState } from '../../../contexts/userContext/AppContext';
+import { useAppState } from '../../../contexts/appContext/AppContext';
 import Message from '../../../ui/Message';
 
 const StyledUsersLists = styled.ul`

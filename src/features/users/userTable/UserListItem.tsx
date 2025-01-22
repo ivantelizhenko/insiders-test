@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '../../../ui/Button';
 import { TrashSvg } from '../../../ui/Svgs';
-import { UserType } from '../../../contexts/userContext/AppContextTypes';
+import { UserType } from '../../../contexts/appContext/AppContextTypes';
 import { useSearchParams } from 'react-router';
 import { useModal } from '../../../contexts/modalContext/ModalContext';
 

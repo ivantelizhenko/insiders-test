@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useNavigate, useSearchParams } from 'react-router';
 
 import { Button } from './Button';
-import { useAppState } from '../contexts/userContext/AppContext';
+import { useAppState } from '../contexts/appContext/AppContext';
 
 import { useLocation } from 'react-router';
 

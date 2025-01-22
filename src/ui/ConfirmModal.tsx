@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from './Button';
-import { useAppState } from '../contexts/userContext/AppContext';
+import { useAppState } from '../contexts/appContext/AppContext';
 import Modal from './Modal';
 import Heading from './Heading';
 

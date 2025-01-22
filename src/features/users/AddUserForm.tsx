@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import styled from 'styled-components';
 
-import { useAppState } from '../../contexts/userContext/AppContext';
-import { UserType } from '../../contexts/userContext/AppContextTypes';
+import { useAppState } from '../../contexts/appContext/AppContext';
+import { UserType } from '../../contexts/appContext/AppContextTypes';
 
 import Form from '../../ui/Form';
 import Input from '../../ui/Input';

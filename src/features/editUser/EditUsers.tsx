@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ChangeEvent } from 'react';
 
-import { useAppState } from '../../contexts/userContext/AppContext';
+import { useAppState } from '../../contexts/appContext/AppContext';
 
 import EditUserForm from './EditUserForm';
 import Heading from '../../ui/Heading';

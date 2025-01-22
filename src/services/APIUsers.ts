@@ -1,4 +1,4 @@
-import { UserType } from '../contexts/userContext/AppContextTypes';
+import { UserType } from '../contexts/appContext/AppContextTypes';
 import { API_URL } from '../utils/constants';
 import { deleteJSON, sendJSON, updateJSON } from './AJAX';
 

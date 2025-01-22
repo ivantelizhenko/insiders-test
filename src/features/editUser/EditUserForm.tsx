@@ -6,14 +6,14 @@ import {
   useState,
 } from 'react';
 
-import { useAppState } from '../../contexts/userContext/AppContext';
+import { useAppState } from '../../contexts/appContext/AppContext';
 
 import Input from '../../ui/Input';
 import Select from '../../ui/Select';
 import Form from '../../ui/Form';
 import { Button } from '../../ui/Button';
 import styled from 'styled-components';
-import { UserType } from '../../contexts/userContext/AppContextTypes';
+import { UserType } from '../../contexts/appContext/AppContextTypes';
 
 const ButtonsContainer = styled.div`
   display: flex;
