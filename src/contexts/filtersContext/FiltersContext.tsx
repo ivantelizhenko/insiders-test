@@ -1,7 +1,6 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, ReactNode, useContext, useReducer } from 'react';
 import {
   ActionType,
-  FiltersContextProviderProps,
   FiltersContextValueType,
   FiltersStateType,
 } from './FiltersContextTypes';
@@ -19,9 +18,46 @@ function usersReducer(
   action: ActionType
 ): FiltersStateType {
   switch (action.type) {
-    case 'type': {
+    case 'department/add': {
       return {
         ...state,
+        filtersDepartments: [...state.filtersDepartments, action.payload],
+      };
+    }
+    case 'department/remove': {
+      return {
+        ...state,
+        filtersDepartments: state.filtersDepartments.filter(
+          filter => filter !== action.payload
+        ),
+      };
+    }
+    case 'country/add': {
+      return {
+        ...state,
+        filtersCountries: [...state.filtersCountries, action.payload],
+      };
+    }
+    case 'country/remove': {
+      return {
+        ...state,
+        filtersCountries: state.filtersCountries.filter(
+          filter => filter !== action.payload
+        ),
+      };
+    }
+    case 'status/add': {
+      return {
+        ...state,
+        filtersStatuses: [...state.filtersStatuses, action.payload],
+      };
+    }
+    case 'status/remove': {
+      return {
+        ...state,
+        filtersStatuses: state.filtersStatuses.filter(
+          filter => filter !== action.payload
+        ),
       };
     }
 
@@ -30,11 +66,41 @@ function usersReducer(
   }
 }
 
-function FiltersProvider({ children }: FiltersContextProviderProps) {
-  const [appState, dispatch] = useReducer(usersReducer, initialState);
+function FiltersProvider({ children }: { children: ReactNode }) {
+  const [filtersState, dispatch] = useReducer(usersReducer, initialState);
 
   const ctx: FiltersContextValueType = {
-    ...appState,
+    ...filtersState,
+
+    toggleFilterDepartments(filterValue) {
+      const existFilter = filtersState.filtersDepartments.find(
+        filter => filter === filterValue
+      );
+
+      if (existFilter) {
+        dispatch({ type: 'department/remove', payload: filterValue });
+      } else dispatch({ type: 'department/add', payload: filterValue });
+    },
+
+    toggleFilterCountries(filterValue) {
+      const existFilter = filtersState.filtersCountries.find(
+        filter => filter === filterValue
+      );
+
+      if (existFilter) {
+        dispatch({ type: 'country/remove', payload: filterValue });
+      } else dispatch({ type: 'country/add', payload: filterValue });
+    },
+
+    toggleFilterStatuses(filterValue) {
+      const existFilter = filtersState.filtersStatuses.find(
+        filter => filter === filterValue
+      );
+
+      if (existFilter) {
+        dispatch({ type: 'status/remove', payload: filterValue });
+      } else dispatch({ type: 'status/add', payload: filterValue });
+    },
   };
 
   return (

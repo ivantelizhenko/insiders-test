@@ -1,7 +1,6 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, ReactNode, useContext, useReducer } from 'react';
 import {
   ActionType,
-  ModalContextProviderProps,
   ModalContextValueType,
   ModalStateType,
 } from './ModalContextTypes';
@@ -36,11 +35,11 @@ function usersReducer(
   }
 }
 
-function ModalProvider({ children }: ModalContextProviderProps) {
-  const [appState, dispatch] = useReducer(usersReducer, initialState);
+function ModalProvider({ children }: { children: ReactNode }) {
+  const [modalState, dispatch] = useReducer(usersReducer, initialState);
 
   const ctx: ModalContextValueType = {
-    ...appState,
+    ...modalState,
 
     setStatusModal(status) {
       dispatch({ type: 'modal/setStatus', payload: status });

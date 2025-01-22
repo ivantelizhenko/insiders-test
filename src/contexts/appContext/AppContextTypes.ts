@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export type UserType = {
   id: string;
   name: string;
@@ -51,10 +49,6 @@ export type AppContextValueType = AppStateType & {
   addUser: (newUser: UserType) => void;
   deleteUser: (id: string) => void;
   updateUser: (id: string, updatedUser: UserType) => void;
-};
-
-export type AppContextProviderProps = {
-  children: ReactNode;
 };
 
 export type LoadingAction = {

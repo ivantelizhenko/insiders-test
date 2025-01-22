@@ -14,6 +14,8 @@ import { TrashSvg } from '../../ui/Svgs';
 import ConfirmModal from '../../ui/ConfirmModal';
 import { useSearchParams } from 'react-router';
 import { useModal } from '../../contexts/modalContext/ModalContext';
+import { useFilters } from '../../contexts/filtersContext/FiltersContext';
+import { ChangeEvent } from 'react';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -44,14 +46,14 @@ const StyledUsers = styled.div`
 `;
 
 function Users() {
-  const {
-    departments,
-    statuses,
-    countries,
-
-    deleteUser,
-  } = useAppState();
+  const { departments, statuses, countries, deleteUser } = useAppState();
   const { modalStatus, setStatusModal, closeModal } = useModal();
+  const {
+    filtersDepartments,
+    toggleFilterDepartments,
+    toggleFilterCountries,
+    toggleFilterStatuses,
+  } = useFilters();
   const [searchParams] = useSearchParams();
 
   function handleDeleteUser() {
@@ -61,6 +63,16 @@ function Users() {
 
   function showAddUserModal() {
     setStatusModal('addUser');
+  }
+
+  function handleChangeFilterDepartments(e: ChangeEvent<HTMLInputElement>) {
+    toggleFilterDepartments(e.target.value);
+  }
+  function handleChangeFilterCountries(e: ChangeEvent<HTMLInputElement>) {
+    toggleFilterCountries(e.target.value);
+  }
+  function handleChangeFilterStatuses(e: ChangeEvent<HTMLInputElement>) {
+    toggleFilterStatuses(e.target.value);
   }
 
   return (
@@ -75,9 +87,23 @@ function Users() {
       </div>
       <div id="styledUsers-filterBox">
         <FiltersBox>
-          <FilterBox data={departments} name="department" />
-          <FilterBox data={countries} name="country" />
-          <FilterBox data={statuses} name="status" />
+          <FilterBox
+            data={departments}
+            name="department"
+            handleChange={handleChangeFilterDepartments}
+          />
+          <FilterBox
+            disabled={filtersDepartments.length < 3}
+            data={countries}
+            name="country"
+            handleChange={handleChangeFilterCountries}
+          />
+          <FilterBox
+            disabled={filtersDepartments.length < 3}
+            data={statuses}
+            name="status"
+            handleChange={handleChangeFilterStatuses}
+          />
         </FiltersBox>
       </div>
       <div id="styledUsers-buttonIcon">

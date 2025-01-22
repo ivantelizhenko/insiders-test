@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export type ModalVariantsType = 'closedModal' | 'addUser' | 'confirmation';
 
 export type ModalStateType = { modalStatus: ModalVariantsType };
@@ -17,7 +15,3 @@ export type CloseModalAction = {
 };
 
 export type ActionType = SetStatusModalAction | CloseModalAction;
-
-export type ModalContextProviderProps = {
-  children: ReactNode;
-};

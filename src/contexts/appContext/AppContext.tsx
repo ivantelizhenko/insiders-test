@@ -1,5 +1,6 @@
 import {
   createContext,
+  ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -7,7 +8,6 @@ import {
 } from 'react';
 import {
   ActionType,
-  AppContextProviderProps,
   AppContextValueType,
   AppStateType,
 } from './AppContextTypes';
@@ -108,7 +108,7 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
   }
 }
 
-function AppProvider({ children }: AppContextProviderProps) {
+function AppProvider({ children }: { children: ReactNode }) {
   const [appState, dispatch] = useReducer(usersReducer, initialState);
 
   useEffect(() => {

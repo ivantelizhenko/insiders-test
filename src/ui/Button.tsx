@@ -16,7 +16,6 @@ export const Button = styled.button<ButtonProps>`
   height: ${props => props.height || '100%'};
   width: ${props => props.width};
   padding: ${props => props.padding || '1rem'};
-  cursor: pointer;
 
   color: #000;
   background-color: ${props => (props.selected ? '#c4c4c4' : '#fff')};
@@ -27,8 +26,9 @@ export const Button = styled.button<ButtonProps>`
 
   transition: all 0.2s;
 
-  &:hover,
-  &:active {
+  &:hover:not(:disabled),
+  &:active:not(:disabled) {
+    cursor: pointer;
     background-color: #c4c4c4;
   }
 
