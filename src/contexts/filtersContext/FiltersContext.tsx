@@ -1,16 +1,18 @@
 import { createContext, ReactNode, useContext, useReducer } from 'react';
 import {
   ActionType,
+  FilterName,
   FiltersContextValueType,
   FiltersStateType,
+  PossibleDispatchType,
 } from './FiltersContextTypes';
 
 const FiltersContext = createContext<FiltersContextValueType | null>(null);
 
 const initialState: FiltersStateType = {
-  filtersCountries: [],
-  filtersDepartments: [],
-  filtersStatuses: [],
+  countryFilters: [],
+  departmentFilters: [],
+  statusFilters: [],
 };
 
 function usersReducer(
@@ -21,13 +23,16 @@ function usersReducer(
     case 'department/add': {
       return {
         ...state,
-        filtersDepartments: [...state.filtersDepartments, action.payload],
+        departmentFilters: [
+          ...(state.departmentFilters as string[]),
+          action.payload,
+        ],
       };
     }
     case 'department/remove': {
       return {
         ...state,
-        filtersDepartments: state.filtersDepartments.filter(
+        departmentFilters: (state.departmentFilters as string[]).filter(
           filter => filter !== action.payload
         ),
       };
@@ -35,13 +40,13 @@ function usersReducer(
     case 'country/add': {
       return {
         ...state,
-        filtersCountries: [...state.filtersCountries, action.payload],
+        countryFilters: [...(state.countryFilters as string[]), action.payload],
       };
     }
     case 'country/remove': {
       return {
         ...state,
-        filtersCountries: state.filtersCountries.filter(
+        countryFilters: (state.countryFilters as string[]).filter(
           filter => filter !== action.payload
         ),
       };
@@ -49,13 +54,13 @@ function usersReducer(
     case 'status/add': {
       return {
         ...state,
-        filtersStatuses: [...state.filtersStatuses, action.payload],
+        statusFilters: [...(state.statusFilters as string[]), action.payload],
       };
     }
     case 'status/remove': {
       return {
         ...state,
-        filtersStatuses: state.filtersStatuses.filter(
+        statusFilters: (state.statusFilters as string[]).filter(
           filter => filter !== action.payload
         ),
       };
@@ -72,34 +77,18 @@ function FiltersProvider({ children }: { children: ReactNode }) {
   const ctx: FiltersContextValueType = {
     ...filtersState,
 
-    toggleFilterDepartments(filterValue) {
-      const existFilter = filtersState.filtersDepartments.find(
+    toggleFilter(filterValue, name) {
+      const [dispatchName] = name.split('F');
+
+      const existFilter = (filtersState[name] as Array<string>).find(
         filter => filter === filterValue
       );
 
-      if (existFilter) {
-        dispatch({ type: 'department/remove', payload: filterValue });
-      } else dispatch({ type: 'department/add', payload: filterValue });
-    },
+      const curType: PossibleDispatchType = existFilter
+        ? `${dispatchName as FilterName}/remove`
+        : `${dispatchName as FilterName}/add`;
 
-    toggleFilterCountries(filterValue) {
-      const existFilter = filtersState.filtersCountries.find(
-        filter => filter === filterValue
-      );
-
-      if (existFilter) {
-        dispatch({ type: 'country/remove', payload: filterValue });
-      } else dispatch({ type: 'country/add', payload: filterValue });
-    },
-
-    toggleFilterStatuses(filterValue) {
-      const existFilter = filtersState.filtersStatuses.find(
-        filter => filter === filterValue
-      );
-
-      if (existFilter) {
-        dispatch({ type: 'status/remove', payload: filterValue });
-      } else dispatch({ type: 'status/add', payload: filterValue });
+      dispatch({ type: curType, payload: filterValue });
     },
   };
 

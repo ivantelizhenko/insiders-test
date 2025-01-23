@@ -48,12 +48,7 @@ const StyledUsers = styled.div`
 function Users() {
   const { departments, statuses, countries, deleteUser } = useAppState();
   const { modalStatus, setStatusModal, closeModal } = useModal();
-  const {
-    filtersDepartments,
-    toggleFilterDepartments,
-    toggleFilterCountries,
-    toggleFilterStatuses,
-  } = useFilters();
+  const { departmentFilters, toggleFilter } = useFilters();
   const [searchParams] = useSearchParams();
 
   function handleDeleteUser() {
@@ -66,13 +61,13 @@ function Users() {
   }
 
   function handleChangeFilterDepartments(e: ChangeEvent<HTMLInputElement>) {
-    toggleFilterDepartments(e.target.value);
+    toggleFilter(e.target.value, 'departmentFilters');
   }
   function handleChangeFilterCountries(e: ChangeEvent<HTMLInputElement>) {
-    toggleFilterCountries(e.target.value);
+    toggleFilter(e.target.value, 'countryFilters');
   }
   function handleChangeFilterStatuses(e: ChangeEvent<HTMLInputElement>) {
-    toggleFilterStatuses(e.target.value);
+    toggleFilter(e.target.value, 'statusFilters');
   }
 
   return (
@@ -93,13 +88,13 @@ function Users() {
             handleChange={handleChangeFilterDepartments}
           />
           <FilterBox
-            disabled={filtersDepartments.length < 3}
+            disabled={departmentFilters.length < 3}
             data={countries}
             name="country"
             handleChange={handleChangeFilterCountries}
           />
           <FilterBox
-            disabled={filtersDepartments.length < 3}
+            disabled={departmentFilters.length < 3}
             data={statuses}
             name="status"
             handleChange={handleChangeFilterStatuses}

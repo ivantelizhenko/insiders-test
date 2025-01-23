@@ -1,44 +1,17 @@
 export type FiltersStateType = {
-  filtersCountries: string[];
-  filtersDepartments: string[];
-  filtersStatuses: string[];
+  [key: string]: string[] | ((filterValue: string, name: string) => void);
 };
 
 export type FiltersContextValueType = FiltersStateType & {
-  toggleFilterDepartments: (filterValue: string) => void;
-  toggleFilterCountries: (filterValue: string) => void;
-  toggleFilterStatuses: (filterValue: string) => void;
+  toggleFilter: (filterValue: string, name: string) => void;
 };
 
-type AddDepartmentAction = {
-  type: 'department/add';
-  payload: string;
-};
-type RemoveDepartmentAction = {
-  type: 'department/remove';
-  payload: string;
-};
-type AddCountryAction = {
-  type: 'country/add';
-  payload: string;
-};
-type RemoveCountryAction = {
-  type: 'country/remove';
-  payload: string;
-};
-type AddStatusAction = {
-  type: 'status/add';
-  payload: string;
-};
-type RemoveStatusAction = {
-  type: 'status/remove';
+export type FilterName = 'department' | 'country' | 'status';
+export type PossibleDispatchType = `${FilterName}/add` | `${FilterName}/remove`;
+
+type FilterAction = {
+  type: PossibleDispatchType;
   payload: string;
 };
 
-export type ActionType =
-  | AddDepartmentAction
-  | AddCountryAction
-  | AddStatusAction
-  | RemoveDepartmentAction
-  | RemoveCountryAction
-  | RemoveStatusAction;
+export type ActionType = FilterAction;
