@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import styled from 'styled-components';
 
 import { useAppState } from '../../contexts/appContext/AppContext';
@@ -8,6 +8,8 @@ import Form from '../../ui/Form';
 import Input from '../../ui/Input';
 import Select from '../../ui/Select';
 import { Button } from '../../ui/Button';
+import { useModal } from '../../contexts/modalContext/ModalContext';
+import { useForm } from '../../hooks/useForm';
 
 const ButtonBox = styled.div`
   gap: 1rem;
@@ -17,76 +19,47 @@ const ButtonBox = styled.div`
 `;
 
 function AddUserForm() {
-  const { departments, statuses, countries, closeModal, addUser } =
-    useAppState();
-  const [newUser, setNewUser] = useState<UserType>({
+  const { departments, statuses, countries, addUser } = useAppState();
+  const { closeModal } = useModal();
+  const [newUser, setNewUser] = useForm<Partial<UserType>>({
     id: Math.random().toString(),
-    name: '',
-    status: {
-      name: '',
-      value: '',
-    },
-    department: {
-      name: '',
-      value: '',
-    },
-    country: {
-      name: '',
-      value: '',
-    },
   });
-
-  function onChange(e: ChangeEvent<HTMLInputElement>) {
-    const inputName = e.target.value;
-
-    setNewUser(prevData => ({ ...prevData, name: inputName }));
-  }
-
-  function setFromSelect(e: ChangeEvent<HTMLSelectElement>) {
-    const curOptionValue = e.target.value;
-    const curSelectName = e.target.dataset.selection_name?.toLowerCase();
-    const curSelectObjs = JSON.parse(e.target.dataset.selection_objs!);
-    const curOption = curSelectObjs.find(
-      (el: { name: string; value: string; id: string }) =>
-        el.value === curOptionValue
-    );
-    setNewUser(prevData => ({
-      ...prevData,
-      [`${curSelectName}`]: { name: curOption.name, value: curOption.name },
-    }));
-  }
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    addUser(newUser);
+    addUser(newUser as UserType);
     closeModal();
   }
 
   return (
     <Form title="User Information" handleSubmit={handleSubmit}>
       <Input
-        required={true}
         label="Full Name"
+        name="name"
         type="text"
-        handleChange={onChange}
+        required={true}
+        handleChange={setNewUser}
       />
       <Select
         label="Department"
+        name="department"
         objs={departments}
-        handlerSelect={setFromSelect}
         required={true}
+        handlerSelect={setNewUser}
       />
       <Select
         label="Country"
+        name="country"
         objs={countries}
-        handlerSelect={setFromSelect}
         required={true}
+        handlerSelect={setNewUser}
       />
       <Select
         label="Status"
+        name="status"
         objs={statuses}
-        handlerSelect={setFromSelect}
         required={true}
+        handlerSelect={setNewUser}
       />
       <ButtonBox>
         <Button width="20rem">Add User</Button>

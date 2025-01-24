@@ -173,8 +173,8 @@
     {
       "name": "Frank Moore",
       "status": {
-        "name": "Active",
-        "value": "ACTIVE"
+        "name": "All statuses",
+        "value": "ALL"
       },
       "department": {
         "name": "Operations",
@@ -267,41 +267,19 @@
       "id": "e928"
     },
     {
-      "id": "0.1104475627576672",
-      "name": "test3",
+      "id": "0.7826729882011151",
+      "name": "User Test",
+      "department": {
+        "name": "Information Technology",
+        "value": "IT"
+      },
       "status": {
         "name": "Active",
-        "value": "ACTIVE",
-        "id": "a824"
-      },
-      "department": {
-        "name": "Human Resources",
-        "value": "HR",
-        "id": "ee91"
+        "value": "ACTIVE"
       },
       "country": {
-        "name": "Germany",
-        "value": "DE",
-        "id": "0534"
-      }
-    },
-    {
-      "id": "0.5902356627951925",
-      "name": "Ivan",
-      "status": {
-        "name": "All statuses",
-        "value": "ALL",
-        "id": "9833"
-      },
-      "department": {
-        "name": "Research and Development",
-        "value": "R&D",
-        "id": "c1c7"
-      },
-      "country": {
-        "name": "France",
-        "value": "FR",
-        "id": "2033"
+        "name": "Australia",
+        "value": "AU"
       }
     }
   ]

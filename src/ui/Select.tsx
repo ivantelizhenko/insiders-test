@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 type SelectType = {
   label: string;
+  name: string;
   objs: { name: string; id: string; value?: string }[];
   handlerSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
   required?: true | false;
@@ -33,18 +34,16 @@ const StyledSelect = styled.select`
 function Select({
   objs,
   label,
+  name,
   handlerSelect,
   required = false,
-  defaultValue,
+  defaultValue = '',
 }: SelectType) {
-  const [curValue, setCurValue] = useState(defaultValue);
+  const [value, setValue] = useState(defaultValue);
+  useEffect(() => setValue(defaultValue), [defaultValue]);
 
-  useEffect(() => {
-    setCurValue(defaultValue);
-  }, [defaultValue]);
-
-  function handleSelectHere(e: ChangeEvent<HTMLSelectElement>) {
-    setCurValue(e.target.value);
+  function onSelect(e: ChangeEvent<HTMLSelectElement>) {
+    setValue(e.target.value);
     handlerSelect(e);
   }
 
@@ -53,13 +52,13 @@ function Select({
       <label htmlFor={label}>{label}</label>
       <StyledSelect
         id={label}
-        onChange={handleSelectHere}
+        name={name}
+        onChange={onSelect}
         required={required}
-        value={curValue}
-        data-selection_name={label}
+        value={value}
         data-selection_objs={JSON.stringify(objs)}
       >
-        <option key="default0" value="" data-name="">
+        <option key={`default${Math.random()}`} value="">
           Select {label}
         </option>
         {objs.map(el => {
