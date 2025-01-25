@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import { ChangeEvent } from 'react';
 import { createPortal } from 'react-dom';
+import styled from 'styled-components';
 
 import AddUserModal from './AddUserModal';
 
@@ -13,9 +14,10 @@ import { Button } from '../../ui/Button';
 import { TrashSvg } from '../../ui/Svgs';
 import ConfirmModal from '../../ui/ConfirmModal';
 import { useSearchParams } from 'react-router';
+
 import { useModal } from '../../contexts/modalContext/ModalContext';
 import { useFilters } from '../../contexts/filtersContext/FiltersContext';
-import { ChangeEvent } from 'react';
+import { useToggleFilterLink } from '../../hooks/useToggleFilterLink';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -46,10 +48,11 @@ const StyledUsers = styled.div`
 `;
 
 function Users() {
+  const [searchParams] = useSearchParams();
   const { departments, statuses, countries, deleteUser } = useAppState();
   const { modalStatus, setStatusModal, closeModal } = useModal();
   const { departmentFilters, toggleFilter } = useFilters();
-  const [searchParams] = useSearchParams();
+  const [toggleFilterLink] = useToggleFilterLink();
 
   function handleDeleteUser() {
     deleteUser(searchParams.get('id')!);
@@ -62,12 +65,16 @@ function Users() {
 
   function handleChangeFilterDepartments(e: ChangeEvent<HTMLInputElement>) {
     toggleFilter(e.target.value, 'departmentFilters');
+    toggleFilterLink('department', e.target.value);
   }
+
   function handleChangeFilterCountries(e: ChangeEvent<HTMLInputElement>) {
     toggleFilter(e.target.value, 'countryFilters');
+    toggleFilterLink('country', e.target.value);
   }
   function handleChangeFilterStatuses(e: ChangeEvent<HTMLInputElement>) {
     toggleFilter(e.target.value, 'statusFilters');
+    toggleFilterLink('status', e.target.value);
   }
 
   return (

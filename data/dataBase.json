@@ -156,9 +156,8 @@
     {
       "name": "Eve Wilson",
       "status": {
-        "name": "Disabled",
-        "value": "DISABLED",
-        "id": "def6"
+        "name": "Active",
+        "value": "ACTIVE"
       },
       "department": {
         "name": "Human Resources",

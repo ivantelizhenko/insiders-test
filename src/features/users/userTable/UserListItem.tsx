@@ -30,12 +30,12 @@ function UserListItem({ user }: { user: UserType }) {
   const { name, department, country, status, id } = user;
   const { setStatusModal } = useModal();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   function showAddUserModal() {
     setStatusModal('confirmation');
-    setSearchParams({ id: id });
+    searchParams.set('id', id);
+    setSearchParams(searchParams);
   }
 
   return (

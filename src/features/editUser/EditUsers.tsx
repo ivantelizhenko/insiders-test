@@ -50,6 +50,7 @@ function EditUsers() {
         <span className="edit-user__select">
           <Select
             label="User"
+            name="user"
             objs={usersTransform}
             handlerSelect={handleSelectUser}
             defaultValue={currentUser?.id}

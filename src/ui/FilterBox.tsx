@@ -50,7 +50,7 @@ function FilterBox({
       >
         Select {name}
       </Button>
-      {showWindow && (
+      {showWindow && !disabled && (
         <ul>
           {data.map((el: { name: string; value: string }) => (
             <Filter
