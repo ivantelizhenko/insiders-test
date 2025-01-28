@@ -1,17 +1,43 @@
 export type FiltersStateType = {
-  [key: string]: string[] | ((filterValue: string, name: string) => void);
+  departmentFilters: string[];
+  statusFilters: string[];
+  countryFilters: string[];
+  allowAll: boolean;
 };
 
 export type FiltersContextValueType = FiltersStateType & {
-  toggleFilter: (filterValue: string, name: string) => void;
+  toggleFilterValue: (name: string, value: string) => void;
+  deleteFilterValues: (name: string) => void;
+  toggleAllowAllFilters: (allowAll: boolean) => void;
 };
 
 export type FilterName = 'department' | 'country' | 'status';
-export type PossibleDispatchType = `${FilterName}/add` | `${FilterName}/remove`;
+export type DispatchToggleType = `${FilterName}/add` | `${FilterName}/remove`;
+export type DispatchDeleteType = `${FilterName}/removeAll`;
 
-type FilterAction = {
-  type: PossibleDispatchType;
-  payload: string;
+type AllowAllAction = {
+  type: 'filters/allowAll';
+};
+type AllowOneAction = {
+  type: 'filters/allowOne';
 };
 
-export type ActionType = FilterAction;
+type FiltersValuesInitialization = {
+  type: 'filters/set';
+  payload: { [x: string]: string[] };
+};
+
+type FilterToggleValueAction = {
+  type: DispatchToggleType;
+  payload: string;
+};
+type FilterDeleteValuesAction = {
+  type: DispatchDeleteType;
+};
+
+export type ActionType =
+  | FiltersValuesInitialization
+  | FilterToggleValueAction
+  | FilterDeleteValuesAction
+  | AllowAllAction
+  | AllowOneAction;

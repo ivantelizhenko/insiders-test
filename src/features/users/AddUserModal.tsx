@@ -1,12 +1,13 @@
+import { memo } from 'react';
 import Modal from '../../ui/Modal';
 import AddUserForm from './AddUserForm';
 
-function AddUserModal() {
+const AddUserModal = memo(function AddUserModal() {
   return (
     <Modal>
       <AddUserForm />
     </Modal>
   );
-}
+});
 
 export default AddUserModal;

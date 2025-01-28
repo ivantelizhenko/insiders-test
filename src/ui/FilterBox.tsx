@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Filter from './Filter';
@@ -8,6 +8,7 @@ type FilterBoxProps = {
   disabled?: boolean;
   name: string;
   data: { name: string; value: string }[];
+  availableFilters: string[];
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -32,6 +33,7 @@ function FilterBox({
   data,
   handleChange,
   disabled = false,
+  availableFilters,
 }: FilterBoxProps) {
   const [showWindow, setShowWindow] = useState<boolean>(false);
 
@@ -39,25 +41,30 @@ function FilterBox({
     setShowWindow(prevState => !prevState);
   }
 
+  useEffect(() => {
+    if (disabled) setShowWindow(false);
+  }, [disabled]);
+
   return (
     <StyledFilterBox>
       <Button
         onClick={handleClick}
-        width="auto"
-        padding="1rem"
-        height="4.8rem"
+        $width="auto"
+        $padding="1rem"
+        $height="4.8rem"
         disabled={disabled}
       >
         Select {name}
       </Button>
       {showWindow && !disabled && (
         <ul>
-          {data.map((el: { name: string; value: string }) => (
+          {data.map(({ name, value }: { name: string; value: string }) => (
             <Filter
-              key={el.name}
-              label={el.name}
-              value={el.value || el.name}
+              key={name}
+              label={name}
+              value={value || name}
               handleChange={handleChange}
+              checked={availableFilters.includes(value)}
             />
           ))}
         </ul>

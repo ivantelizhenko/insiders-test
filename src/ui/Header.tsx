@@ -34,15 +34,15 @@ function Header() {
       <Button
         disabled={users.length === 0}
         onClick={() => handleNavigate(`edit`)}
-        width="20rem"
-        selected={curPage === 'edit'}
+        $width="20rem"
+        $selected={curPage === 'edit'}
       >
         Edit Users
       </Button>
       <Button
         onClick={() => handleNavigate('users')}
-        width="20rem"
-        selected={curPage === 'users'}
+        $width="20rem"
+        $selected={curPage === 'users'}
       >
         Users
       </Button>

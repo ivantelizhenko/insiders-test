@@ -45,9 +45,9 @@ function UserListItem({ user }: { user: UserType }) {
       <p>{country.name}</p>
       <p>{status.name}</p>
       <Button
-        width="5rem"
-        padding="1.4rem"
-        height="100%"
+        $width="5rem"
+        $padding="1.4rem"
+        $height="100%"
         onClick={showAddUserModal}
       >
         <TrashSvg />

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 type Filter = {
   label: string;
   value: string;
+  checked?: boolean;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -30,10 +31,16 @@ const StyledFilter = styled.li`
   }
 `;
 
-function Filter({ label, value, handleChange }: Filter) {
+function Filter({ label, value, handleChange, checked = false }: Filter) {
   return (
     <StyledFilter>
-      <input id={label} type="checkbox" value={value} onChange={handleChange} />
+      <input
+        id={label}
+        type="checkbox"
+        value={value}
+        onChange={handleChange}
+        checked={checked}
+      />
       <span className="checkmark"></span>
       <label htmlFor={label}>{label}</label>
     </StyledFilter>

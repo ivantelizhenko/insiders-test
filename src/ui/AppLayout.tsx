@@ -4,6 +4,8 @@ import { Outlet } from 'react-router';
 import Loader from './Loader';
 import Header from './Header';
 import { useAppState } from '../contexts/appContext/AppContext';
+import { ModalProvider } from '../contexts/modalContext/ModalContext';
+import { FiltersProvider } from '../contexts/filtersContext/FiltersContext';
 
 const StyledAppLayout = styled.div`
   font-family: 'Rubik', serif;
@@ -26,12 +28,16 @@ function AppLayout() {
   if (isLoading) return <Loader />;
 
   return (
-    <StyledAppLayout>
-      <Header />
-      <StyledMain>
-        <Outlet />
-      </StyledMain>
-    </StyledAppLayout>
+    <ModalProvider>
+      <FiltersProvider>
+        <StyledAppLayout>
+          <Header />
+          <StyledMain>
+            <Outlet />
+          </StyledMain>
+        </StyledAppLayout>
+      </FiltersProvider>
+    </ModalProvider>
   );
 }
 

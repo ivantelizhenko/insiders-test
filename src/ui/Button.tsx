@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 type ButtonProps = {
-  width: string;
-  padding?: string;
-  height?: string;
-  selected?: boolean;
+  $width: string;
+  $padding?: string;
+  $height?: string;
+  $selected?: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
@@ -13,12 +13,12 @@ export const Button = styled.button<ButtonProps>`
   align-items: center;
   justify-content: center;
 
-  height: ${props => props.height || '100%'};
-  width: ${props => props.width};
-  padding: ${props => props.padding || '1rem'};
+  height: ${props => props.$height || '100%'};
+  width: ${props => props.$width};
+  padding: ${props => props.$padding || '1rem'};
 
   color: #000;
-  background-color: ${props => (props.selected ? '#c4c4c4' : '#fff')};
+  background-color: ${props => (props.$selected ? '#c4c4c4' : '#fff')};
 
   font-weight: 300;
   font-size: 1.4rem;

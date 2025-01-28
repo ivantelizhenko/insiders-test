@@ -73,13 +73,13 @@ function EditUserForm() {
 
       <ButtonsContainer>
         <Button
-          width="20rem"
+          $width="20rem"
           disabled={JSON.stringify(updatedUser) === JSON.stringify(currentUser)}
         >
           Save
         </Button>
         {JSON.stringify(updatedUser) !== JSON.stringify(currentUser) && (
-          <Button width="10rem" onClick={handleDecline}>
+          <Button $width="10rem" onClick={handleDecline}>
             Undo
           </Button>
         )}

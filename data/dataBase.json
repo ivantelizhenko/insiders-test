@@ -156,16 +156,16 @@
     {
       "name": "Eve Wilson",
       "status": {
-        "name": "Active",
-        "value": "ACTIVE"
+        "name": "All statuses",
+        "value": "ALL"
       },
       "department": {
-        "name": "Human Resources",
-        "value": "HR"
+        "name": "Finance",
+        "value": "FIN"
       },
       "country": {
-        "name": "France",
-        "value": "FR"
+        "name": "Australia",
+        "value": "AU"
       },
       "id": "4f72"
     },

@@ -1,23 +1,19 @@
-import { ChangeEvent } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
+import { useSearchParams } from 'react-router';
 
-import AddUserModal from './AddUserModal';
-
-import UsersTable from './userTable/UsersTable';
 import { useAppState } from '../../contexts/appContext/AppContext';
+import { useModal } from '../../contexts/modalContext/ModalContext';
+import { useFilters } from '../../contexts/filtersContext/FiltersContext';
+
 import Heading from '../../ui/Heading';
 import Message from '../../ui/Message';
 import FiltersBox from '../../ui/Filtersbox';
-import FilterBox from '../../ui/FilterBox';
 import { Button } from '../../ui/Button';
 import { TrashSvg } from '../../ui/Svgs';
 import ConfirmModal from '../../ui/ConfirmModal';
-import { useSearchParams } from 'react-router';
-
-import { useModal } from '../../contexts/modalContext/ModalContext';
-import { useFilters } from '../../contexts/filtersContext/FiltersContext';
-import { useToggleFilterLink } from '../../hooks/useToggleFilterLink';
+import AddUserModal from './AddUserModal';
+import UsersTable from './userTable/UsersTable';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -29,6 +25,7 @@ const StyledUsers = styled.div`
   }
   #styledUsers-message {
     grid-column: 1/-1;
+    height: 5rem;
   }
 
   #styledUsers-buttonIcon {
@@ -49,32 +46,30 @@ const StyledUsers = styled.div`
 
 function Users() {
   const [searchParams] = useSearchParams();
-  const { departments, statuses, countries, deleteUser } = useAppState();
+  const { deleteUser } = useAppState();
   const { modalStatus, setStatusModal, closeModal } = useModal();
-  const { departmentFilters, toggleFilter } = useFilters();
-  const [toggleFilterLink] = useToggleFilterLink();
+  const { departmentFilters, deleteFilterValues, toggleAllowAllFilters } =
+    useFilters();
 
   function handleDeleteUser() {
-    deleteUser(searchParams.get('id')!);
-    closeModal();
+    const userId = searchParams.get('id');
+    if (userId) {
+      deleteUser(userId);
+      closeModal();
+    } else {
+      console.error('User ID not found');
+    }
   }
 
   function showAddUserModal() {
     setStatusModal('addUser');
   }
 
-  function handleChangeFilterDepartments(e: ChangeEvent<HTMLInputElement>) {
-    toggleFilter(e.target.value, 'departmentFilters');
-    toggleFilterLink('department', e.target.value);
-  }
-
-  function handleChangeFilterCountries(e: ChangeEvent<HTMLInputElement>) {
-    toggleFilter(e.target.value, 'countryFilters');
-    toggleFilterLink('country', e.target.value);
-  }
-  function handleChangeFilterStatuses(e: ChangeEvent<HTMLInputElement>) {
-    toggleFilter(e.target.value, 'statusFilters');
-    toggleFilterLink('status', e.target.value);
+  function handleClearFilters() {
+    deleteFilterValues('status');
+    deleteFilterValues('department');
+    deleteFilterValues('country');
+    toggleAllowAllFilters(false);
   }
 
   return (
@@ -83,38 +78,22 @@ function Users() {
         <Heading as="h2">Users</Heading>
       </div>
       <div id="styledUsers-message">
-        <Message>
-          Please add at least 3 departmetns to be able to proceed next steps.
-        </Message>
+        {departmentFilters.length < 3 && (
+          <Message>
+            Please add at least 3 departmetns to be able to proceed next steps.
+          </Message>
+        )}
       </div>
       <div id="styledUsers-filterBox">
-        <FiltersBox>
-          <FilterBox
-            data={departments}
-            name="department"
-            handleChange={handleChangeFilterDepartments}
-          />
-          <FilterBox
-            disabled={departmentFilters.length < 3}
-            data={countries}
-            name="country"
-            handleChange={handleChangeFilterCountries}
-          />
-          <FilterBox
-            disabled={departmentFilters.length < 3}
-            data={statuses}
-            name="status"
-            handleChange={handleChangeFilterStatuses}
-          />
-        </FiltersBox>
+        <FiltersBox />
       </div>
       <div id="styledUsers-buttonIcon">
-        <Button width="5rem" padding="1.4rem">
+        <Button $width="5rem" $padding="1.4rem" onClick={handleClearFilters}>
           <TrashSvg />
         </Button>
       </div>
       <div id="styledUsers-button">
-        <Button width="15rem" padding="1.4rem" onClick={showAddUserModal}>
+        <Button $width="15rem" $padding="1.4rem" onClick={showAddUserModal}>
           Add User
         </Button>
       </div>
