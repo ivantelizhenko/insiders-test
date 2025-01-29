@@ -126,7 +126,7 @@ function FiltersProvider({ children }: { children: ReactNode }) {
     for (const [key, value] of fromLink) {
       initialStateFromLink[key] = value.split(',');
     }
-    console.log(initialStateFromLink);
+
     dispatch({ type: 'filters/set', payload: initialStateFromLink });
   }, [searchParams]);
 

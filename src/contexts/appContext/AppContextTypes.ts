@@ -3,7 +3,6 @@ export type UserType = {
   name: string;
   status: {
     name: string;
-    // TODO: Add Enum(?)
     value: string;
   };
   department: {

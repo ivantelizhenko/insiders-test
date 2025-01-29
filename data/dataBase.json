@@ -264,22 +264,6 @@
         "value": "CA"
       },
       "id": "e928"
-    },
-    {
-      "id": "0.7826729882011151",
-      "name": "User Test",
-      "department": {
-        "name": "Information Technology",
-        "value": "IT"
-      },
-      "status": {
-        "name": "Active",
-        "value": "ACTIVE"
-      },
-      "country": {
-        "name": "Australia",
-        "value": "AU"
-      }
     }
   ]
 }
