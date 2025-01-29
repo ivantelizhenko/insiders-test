@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useReducer } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useReducer,
+} from 'react';
 import {
   ActionType,
   ModalContextValueType,
@@ -41,12 +47,12 @@ function ModalProvider({ children }: { children: ReactNode }) {
   const ctx: ModalContextValueType = {
     ...modalState,
 
-    setStatusModal(status) {
+    setStatusModal: useCallback(status => {
       dispatch({ type: 'modal/setStatus', payload: status });
-    },
-    closeModal() {
+    }, []),
+    closeModal: useCallback(() => {
       dispatch({ type: 'modal/close' });
-    },
+    }, []),
   };
 
   return <ModalContext.Provider value={ctx}>{children}</ModalContext.Provider>;

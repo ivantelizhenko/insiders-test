@@ -23,8 +23,9 @@ function FiltersBox() {
   } = useFilters();
 
   useEffect(() => {
-    if (departmentFilters.length)
-      toggleAllowAllFilters(departmentFilters.length >= 3);
+    if (departmentFilters.length === 0) return;
+
+    toggleAllowAllFilters(departmentFilters.length >= 3);
   }, [departmentFilters, toggleAllowAllFilters]);
 
   useEffect(() => {

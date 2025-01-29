@@ -4,6 +4,7 @@ import AppLayout from './ui/AppLayout';
 import EditUsers from './features/editUser/EditUsers';
 import PageNotFound from './ui/PageNotFound';
 import Users from './features/users/Users';
+import { FiltersProvider } from './contexts/filtersContext/FiltersContext';
 
 function App() {
   return (
@@ -14,7 +15,14 @@ function App() {
         <Route path="app" element={<AppLayout />}>
           <Route index element={<Navigate replace to="users" />} />
 
-          <Route path="users" element={<Users />} />
+          <Route
+            path="users"
+            element={
+              <FiltersProvider>
+                <Users />
+              </FiltersProvider>
+            }
+          />
           <Route path="edit" element={<EditUsers />} />
         </Route>
 

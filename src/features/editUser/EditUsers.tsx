@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 
 import { useAppState } from '../../contexts/appContext/AppContext';
 
 import EditUserForm from './EditUserForm';
 import Heading from '../../ui/Heading';
 import Select from '../../ui/Select';
-import { useNavigate } from 'react-router';
+import Message from '../../ui/Message';
 
 const StyledEditUsers = styled.div`
   display: flex;
@@ -29,9 +29,10 @@ const EditUsersInputsContainer = styled.div`
 
 function EditUsers() {
   const { users, setCurrentUser, currentUser } = useAppState();
-  const navigate = useNavigate();
 
-  if (users.length === 0) navigate('/app/users');
+  useEffect(() => {
+    setCurrentUser('');
+  }, [setCurrentUser]);
 
   const usersTransform = users.map(user => ({
     id: user.id,
@@ -45,19 +46,24 @@ function EditUsers() {
   return (
     <StyledEditUsers>
       <Heading as="h2">Edit user</Heading>
-
-      <EditUsersInputsContainer>
-        <span className="edit-user__select">
-          <Select
-            label="User"
-            name="user"
-            objs={usersTransform}
-            handlerSelect={handleSelectUser}
-            defaultValue={currentUser?.id}
-          />
-        </span>
-        {currentUser?.name && <EditUserForm />}
-      </EditUsersInputsContainer>
+      {users.length === 0 ? (
+        <Message textSize="2rem">
+          Hey! You must add at least one user 😉
+        </Message>
+      ) : (
+        <EditUsersInputsContainer>
+          <span className="edit-user__select">
+            <Select
+              label="User"
+              name="user"
+              objs={usersTransform}
+              handlerSelect={handleSelectUser}
+              defaultValue={currentUser?.id}
+            />
+          </span>
+          {currentUser?.name && <EditUserForm />}
+        </EditUsersInputsContainer>
+      )}
     </StyledEditUsers>
   );
 }

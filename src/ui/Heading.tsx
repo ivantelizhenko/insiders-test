@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 type HeadingProps = PropsWithChildren<{ as: string }>;
 
-const StyledHeading = styled.h2`
+const Heading = styled.h2<HeadingProps>`
   display: flex;
 
   align-items: center;
@@ -43,9 +43,5 @@ const StyledHeading = styled.h2`
       font-weight: 700;
     `}
 `;
-
-function Heading({ children, as }: HeadingProps) {
-  return <StyledHeading as={as}>{children}</StyledHeading>;
-}
 
 export default Heading;

@@ -10,6 +10,7 @@ import Select from '../../ui/Select';
 import { Button } from '../../ui/Button';
 import { useModal } from '../../contexts/modalContext/ModalContext';
 import { useForm } from '../../hooks/useForm';
+import { useSearchParams } from 'react-router';
 
 const ButtonBox = styled.div`
   gap: 1rem;
@@ -24,11 +25,23 @@ function AddUserForm() {
   const [newUser, setNewUser] = useForm<Partial<UserType>>({
     id: Math.random().toString(),
   });
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function handleDeleteIdFromLink() {
+    searchParams.delete('id');
+    setSearchParams(searchParams);
+  }
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     addUser(newUser as UserType);
     closeModal();
+    handleDeleteIdFromLink();
+  }
+
+  function handleCloseModal() {
+    closeModal();
+    handleDeleteIdFromLink();
   }
 
   return (
@@ -62,8 +75,8 @@ function AddUserForm() {
         handlerSelect={setNewUser}
       />
       <ButtonBox>
-        <Button width="20rem">Add User</Button>
-        <Button width="10rem" onClick={closeModal}>
+        <Button $width="20rem">Add User</Button>
+        <Button $width="10rem" onClick={handleCloseModal}>
           Undo
         </Button>
       </ButtonBox>

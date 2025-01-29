@@ -38,7 +38,6 @@ export type AppStateType = {
   countries: CountryType[];
   departments: DepartmentType[];
   statuses: StatusType[];
-  isLoading: true | false;
   currentUser: Partial<UserType>;
   error: string;
 };
@@ -48,10 +47,6 @@ export type AppContextValueType = AppStateType & {
   addUser: (newUser: UserType) => void;
   deleteUser: (id: string) => void;
   updateUser: (id: string, updatedUser: UserType) => void;
-};
-
-export type LoadingAction = {
-  type: 'loading';
 };
 
 export type FetchUsersAction = { type: 'users/loaded'; payload: UserType[] };
@@ -95,7 +90,6 @@ export type RejectAction = {
 };
 
 export type ActionType =
-  | LoadingAction
   | FetchUsersAction
   | SetCurrentUserAction
   | AddNewUserAction

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 import { useModal } from '../contexts/modalContext/ModalContext';
+import { useSearchParams } from 'react-router';
 
 const Overlay = styled.div`
   position: fixed;
@@ -33,9 +34,16 @@ type ModalProps = {
 
 function Modal({ children }: ModalProps) {
   const { closeModal } = useModal();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function handleClick() {
+    closeModal();
+    searchParams.delete('id');
+    setSearchParams(searchParams);
+  }
 
   return (
-    <Overlay onClick={closeModal}>
+    <Overlay onClick={handleClick}>
       <StyledModal onClick={e => e.stopPropagation()}>{children}</StyledModal>
     </Overlay>
   );

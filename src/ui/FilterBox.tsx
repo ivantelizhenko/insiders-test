@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Filter from './Filter';
@@ -37,9 +37,9 @@ function FilterBox({
 }: FilterBoxProps) {
   const [showWindow, setShowWindow] = useState<boolean>(false);
 
-  function handleClick() {
+  const handleClick = useCallback(() => {
     setShowWindow(prevState => !prevState);
-  }
+  }, []);
 
   useEffect(() => {
     if (disabled) setShowWindow(false);

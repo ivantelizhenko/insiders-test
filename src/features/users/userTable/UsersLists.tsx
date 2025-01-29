@@ -1,9 +1,11 @@
-import styled from 'styled-components';
-import UserListItem from './UserListItem';
-import { useAppState } from '../../../contexts/appContext/AppContext';
-import Message from '../../../ui/Message';
-import { useFilters } from '../../../contexts/filtersContext/FiltersContext';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
+import { useAppState } from '../../../contexts/appContext/AppContext';
+import { useFilters } from '../../../contexts/filtersContext/FiltersContext';
+
+import UserListItem from './UserListItem';
+import Message from '../../../ui/Message';
 
 const StyledUsersLists = styled.ul`
   padding: 2.8rem 3.6rem;
@@ -21,6 +23,7 @@ function UsersLists() {
   const { users } = useAppState();
   const { departmentFilters, countryFilters, statusFilters } = useFilters();
   const [filteredUsers, setFilteredUsers] = useState(users);
+
   useEffect(() => {
     setFilteredUsers(
       departmentFilters.length > 0
@@ -42,17 +45,18 @@ function UsersLists() {
         : prev
     );
     if (
-      departmentFilters.length &&
-      countryFilters.length &&
-      statusFilters.length
-    )
+      departmentFilters.length === 0 &&
+      countryFilters.length === 0 &&
+      statusFilters.length === 0
+    ) {
       setFilteredUsers(users);
+    }
   }, [users, departmentFilters, countryFilters, statusFilters]);
 
   if (users.length === 0)
     return (
       <MessaageContainer>
-        <Message>Oops! You should add user 😉</Message>
+        <Message>Empty. Add users! 😉</Message>
       </MessaageContainer>
     );
 

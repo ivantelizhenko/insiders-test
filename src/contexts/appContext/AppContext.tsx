@@ -27,22 +27,14 @@ const initialState: AppStateType = {
   departments: [],
   statuses: [],
   currentUser: {},
-  isLoading: false,
   error: '',
 };
 
 function usersReducer(state: AppStateType, action: ActionType): AppStateType {
   switch (action.type) {
-    case 'loading': {
-      return {
-        ...state,
-        isLoading: true,
-      };
-    }
     case 'users/loaded': {
       return {
         ...state,
-        isLoading: false,
         users: action.payload,
       };
     }
@@ -80,27 +72,27 @@ function usersReducer(state: AppStateType, action: ActionType): AppStateType {
     case 'countries/loaded': {
       return {
         ...state,
-        isLoading: false,
+
         countries: action.payload,
       };
     }
     case 'departments/loaded': {
       return {
         ...state,
-        isLoading: false,
+
         departments: action.payload,
       };
     }
     case 'statuses/loaded': {
       return {
         ...state,
-        isLoading: false,
+
         statuses: action.payload,
       };
     }
 
     case 'rejected': {
-      return { ...state, isLoading: false, error: action.payload };
+      return { ...state, error: action.payload };
     }
 
     default:
@@ -113,7 +105,6 @@ function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     async function fetchData() {
-      dispatch({ type: 'loading' });
       try {
         const users = await getJSON(`${API_URL}/users`);
         dispatch({ type: 'users/loaded', payload: users });
@@ -144,15 +135,16 @@ function AppProvider({ children }: { children: ReactNode }) {
     setCurrentUser: useCallback(id => {
       dispatch({ type: 'user/set', payload: id });
     }, []),
+
     addUser(newUser) {
       addUserAPI(newUser);
       dispatch({ type: 'user/add', payload: newUser });
     },
-    deleteUser(id) {
+
+    deleteUser: useCallback(id => {
       deleteUserAPI(id);
       dispatch({ type: 'user/delete', payload: id });
-    },
-
+    }, []),
     updateUser(id, updatedUser) {
       updateUserAPI(id, updatedUser);
       dispatch({ type: 'user/update', payload: { id, updatedUser } });

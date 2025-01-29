@@ -4,6 +4,7 @@ import { TrashSvg } from '../../../ui/Svgs';
 import { UserType } from '../../../contexts/appContext/AppContextTypes';
 import { useSearchParams } from 'react-router';
 import { useModal } from '../../../contexts/modalContext/ModalContext';
+import { useCallback } from 'react';
 
 const StyledUserListItem = styled.li`
   display: grid;
@@ -29,14 +30,13 @@ const StyledUserListItem = styled.li`
 function UserListItem({ user }: { user: UserType }) {
   const { name, department, country, status, id } = user;
   const { setStatusModal } = useModal();
-
   const [searchParams, setSearchParams] = useSearchParams();
 
-  function showAddUserModal() {
+  const showAddUserModal = useCallback(() => {
     setStatusModal('confirmation');
     searchParams.set('id', id);
     setSearchParams(searchParams);
-  }
+  }, [id, setSearchParams, searchParams, setStatusModal]);
 
   return (
     <StyledUserListItem>

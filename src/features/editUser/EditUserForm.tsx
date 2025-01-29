@@ -1,4 +1,5 @@
-import { FormEvent, SyntheticEvent, useEffect } from 'react';
+import { FormEvent, useCallback, useEffect } from 'react';
+import _ from 'lodash';
 
 import { useAppState } from '../../contexts/appContext/AppContext';
 import { UserType } from '../../contexts/appContext/AppContextTypes';
@@ -18,8 +19,14 @@ const ButtonsContainer = styled.div`
 `;
 
 function EditUserForm() {
-  const { departments, statuses, countries, currentUser, updateUser } =
-    useAppState();
+  const {
+    departments,
+    statuses,
+    countries,
+    currentUser,
+    setCurrentUser,
+    updateUser,
+  } = useAppState();
   const [updatedUser, setUpdatedUser, setValue] =
     useForm<Partial<UserType>>(currentUser);
 
@@ -27,15 +34,18 @@ function EditUserForm() {
     setValue(currentUser);
   }, [currentUser, setValue]);
 
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    updateUser(currentUser.id!, updatedUser as UserType);
-  }
+  const handleSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      updateUser(currentUser.id!, updatedUser as UserType);
+      setCurrentUser(updatedUser.id);
+    },
+    [currentUser.id, setCurrentUser, updateUser, updatedUser]
+  );
 
-  function handleDecline(e: SyntheticEvent) {
-    e.preventDefault();
+  const handleDecline = useCallback(() => {
     setValue(currentUser);
-  }
+  }, [setValue, currentUser]);
   return (
     <Form title="User Information" handleSubmit={handleSubmit}>
       <Input
@@ -72,13 +82,10 @@ function EditUserForm() {
       />
 
       <ButtonsContainer>
-        <Button
-          $width="20rem"
-          disabled={JSON.stringify(updatedUser) === JSON.stringify(currentUser)}
-        >
+        <Button $width="20rem" disabled={_.isEqual(updatedUser, currentUser)}>
           Save
         </Button>
-        {JSON.stringify(updatedUser) !== JSON.stringify(currentUser) && (
+        {!_.isEqual(updatedUser, currentUser) && (
           <Button $width="10rem" onClick={handleDecline}>
             Undo
           </Button>

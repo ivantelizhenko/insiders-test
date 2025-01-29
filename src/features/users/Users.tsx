@@ -1,6 +1,7 @@
+import { memo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import styled from 'styled-components';
 import { useSearchParams } from 'react-router';
+import styled from 'styled-components';
 
 import { useAppState } from '../../contexts/appContext/AppContext';
 import { useModal } from '../../contexts/modalContext/ModalContext';
@@ -12,8 +13,9 @@ import FiltersBox from '../../ui/Filtersbox';
 import { Button } from '../../ui/Button';
 import { TrashSvg } from '../../ui/Svgs';
 import ConfirmModal from '../../ui/ConfirmModal';
-import AddUserModal from './AddUserModal';
 import UsersTable from './userTable/UsersTable';
+import Modal from '../../ui/Modal';
+import AddUserForm from './AddUserForm';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -44,6 +46,9 @@ const StyledUsers = styled.div`
   }
 `;
 
+const UsersTableMemo = memo(UsersTable);
+const FiltersBoxMemo = memo(FiltersBox);
+
 function Users() {
   const [searchParams] = useSearchParams();
   const { deleteUser } = useAppState();
@@ -51,7 +56,7 @@ function Users() {
   const { departmentFilters, deleteFilterValues, toggleAllowAllFilters } =
     useFilters();
 
-  function handleDeleteUser() {
+  const handleDeleteUser = useCallback(() => {
     const userId = searchParams.get('id');
     if (userId) {
       deleteUser(userId);
@@ -59,18 +64,18 @@ function Users() {
     } else {
       console.error('User ID not found');
     }
-  }
+  }, [closeModal, deleteUser, searchParams]);
 
-  function showAddUserModal() {
+  const showAddUserModal = useCallback(() => {
     setStatusModal('addUser');
-  }
+  }, [setStatusModal]);
 
-  function handleClearFilters() {
+  const handleClearFilters = useCallback(() => {
     deleteFilterValues('status');
     deleteFilterValues('department');
     deleteFilterValues('country');
     toggleAllowAllFilters(false);
-  }
+  }, [deleteFilterValues, toggleAllowAllFilters]);
 
   return (
     <StyledUsers>
@@ -85,7 +90,7 @@ function Users() {
         )}
       </div>
       <div id="styledUsers-filterBox">
-        <FiltersBox />
+        <FiltersBoxMemo />
       </div>
       <div id="styledUsers-buttonIcon">
         <Button $width="5rem" $padding="1.4rem" onClick={handleClearFilters}>
@@ -98,10 +103,15 @@ function Users() {
         </Button>
       </div>
       <div id="styledUsers-table">
-        <UsersTable />
+        <UsersTableMemo />
       </div>
       {modalStatus === 'addUser' &&
-        createPortal(<AddUserModal />, document.body)}
+        createPortal(
+          <Modal>
+            <AddUserForm />
+          </Modal>,
+          document.body
+        )}
       {modalStatus === 'confirmation' &&
         createPortal(
           <ConfirmModal handleAccept={handleDeleteUser} />,

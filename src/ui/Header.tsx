@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useNavigate, useSearchParams } from 'react-router';
 
 import { Button } from './Button';
-import { useAppState } from '../contexts/appContext/AppContext';
 
 import { useLocation } from 'react-router';
 
@@ -18,7 +17,6 @@ const StyledHeader = styled.header`
 function Header() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { users, setCurrentUser } = useAppState();
 
   const { pathname } = useLocation();
   const curPage = pathname.split('/').at(-1);
@@ -26,13 +24,11 @@ function Header() {
   function handleNavigate(path: string) {
     navigate(path);
     searchParams.delete('id');
-    setCurrentUser('');
   }
 
   return (
     <StyledHeader>
       <Button
-        disabled={users.length === 0}
         onClick={() => handleNavigate(`edit`)}
         $width="20rem"
         $selected={curPage === 'edit'}

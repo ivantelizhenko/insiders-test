@@ -122,6 +122,54 @@
   ],
   "users": [
     {
+      "name": "John Doe",
+      "status": {
+        "name": "Active",
+        "value": "ACTIVE"
+      },
+      "department": {
+        "name": "Information Technology",
+        "value": "IT"
+      },
+      "country": {
+        "name": "United States",
+        "value": "US"
+      },
+      "id": "dc18"
+    },
+    {
+      "name": "Jane Smith",
+      "status": {
+        "name": "Disabled",
+        "value": "DISABLED"
+      },
+      "department": {
+        "name": "Finance",
+        "value": "FIN"
+      },
+      "country": {
+        "name": "Canada",
+        "value": "CA"
+      },
+      "id": "8953"
+    },
+    {
+      "name": "Alice Johnson",
+      "status": {
+        "name": "Active",
+        "value": "ACTIVE"
+      },
+      "department": {
+        "name": "Marketing",
+        "value": "MKT"
+      },
+      "country": {
+        "name": "Australia",
+        "value": "AU"
+      },
+      "id": "b469"
+    },
+    {
       "name": "Bob Brown",
       "status": {
         "name": "All statuses",
@@ -135,7 +183,7 @@
         "name": "Australia",
         "value": "AU"
       },
-      "id": "1a54"
+      "id": "e3e7"
     },
     {
       "name": "Charlie Davis",
@@ -151,23 +199,23 @@
         "name": "Germany",
         "value": "DE"
       },
-      "id": "d514"
+      "id": "b19a"
     },
     {
       "name": "Eve Wilson",
       "status": {
-        "name": "All statuses",
-        "value": "ALL"
+        "name": "Disabled",
+        "value": "DISABLED"
       },
       "department": {
         "name": "Finance",
         "value": "FIN"
       },
       "country": {
-        "name": "Australia",
-        "value": "AU"
+        "name": "France",
+        "value": "FR"
       },
-      "id": "4f72"
+      "id": "6b74"
     },
     {
       "name": "Frank Moore",
@@ -176,14 +224,14 @@
         "value": "ALL"
       },
       "department": {
-        "name": "Operations",
-        "value": "OPS"
+        "name": "Information Technology",
+        "value": "IT"
       },
       "country": {
-        "name": "India",
-        "value": "IN"
+        "name": "Australia",
+        "value": "AU"
       },
-      "id": "9f94"
+      "id": "08e7"
     },
     {
       "name": "Grace Lee",
@@ -199,7 +247,7 @@
         "name": "China",
         "value": "CN"
       },
-      "id": "cabf"
+      "id": "723b"
     },
     {
       "name": "Henry White",
@@ -215,7 +263,7 @@
         "name": "Japan",
         "value": "JP"
       },
-      "id": "46dd"
+      "id": "c9a2"
     },
     {
       "name": "Isabella Green",
@@ -231,7 +279,7 @@
         "name": "Ukraine",
         "value": "UA"
       },
-      "id": "68fe"
+      "id": "9aa1"
     },
     {
       "name": "Jack Black",
@@ -244,10 +292,10 @@
         "value": "SAL"
       },
       "country": {
-        "name": "Australia",
-        "value": "AU"
+        "name": "United Kingdom",
+        "value": "GB"
       },
-      "id": "af9f"
+      "id": "1451"
     },
     {
       "name": "Lily Scott",
@@ -263,7 +311,23 @@
         "name": "Canada",
         "value": "CA"
       },
-      "id": "e928"
+      "id": "2d45"
+    },
+    {
+      "id": "0.6972200653432867",
+      "name": "Ivan Telizhenko",
+      "department": {
+        "name": "Operations",
+        "value": "OPS"
+      },
+      "status": {
+        "name": "Active",
+        "value": "ACTIVE"
+      },
+      "country": {
+        "name": "United States",
+        "value": "US"
+      }
     }
   ]
 }
