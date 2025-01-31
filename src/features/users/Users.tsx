@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useId } from 'react';
 import { createPortal } from 'react-dom';
 import { useSearchParams } from 'react-router';
 import styled from 'styled-components';
@@ -55,6 +55,7 @@ function Users() {
   const { modalStatus, setStatusModal, closeModal } = useModal();
   const { departmentFilters, deleteFilterValues, toggleAllowAllFilters } =
     useFilters();
+  console.log(useId());
 
   const handleDeleteUser = useCallback(() => {
     const userId = searchParams.get('id');

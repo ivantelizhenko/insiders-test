@@ -317,16 +317,16 @@
       "id": "0.6972200653432867",
       "name": "Ivan Telizhenko",
       "department": {
-        "name": "Operations",
-        "value": "OPS"
+        "name": "Research and Development",
+        "value": "R&D"
       },
       "status": {
         "name": "Active",
         "value": "ACTIVE"
       },
       "country": {
-        "name": "United States",
-        "value": "US"
+        "name": "Ukraine",
+        "value": "UA"
       }
     }
   ]

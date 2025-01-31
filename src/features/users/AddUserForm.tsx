@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import { FormEvent, useId } from 'react';
 import styled from 'styled-components';
 
 import { useAppState } from '../../contexts/appContext/AppContext';
@@ -23,7 +23,7 @@ function AddUserForm() {
   const { departments, statuses, countries, addUser } = useAppState();
   const { closeModal } = useModal();
   const [newUser, setNewUser] = useForm<Partial<UserType>>({
-    id: Math.random().toString(),
+    id: useId() + Math.random().toString(),
   });
   const [searchParams, setSearchParams] = useSearchParams();
 
