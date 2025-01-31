@@ -7,15 +7,16 @@ import { useAppState } from '../../contexts/appContext/AppContext';
 import { useModal } from '../../contexts/modalContext/ModalContext';
 import { useFilters } from '../../contexts/filtersContext/FiltersContext';
 
-import Heading from '../../ui/Heading';
-import Message from '../../ui/Message';
-import FiltersBox from '../../ui/Filtersbox';
-import Button from '../../ui/Button';
-import { TrashSvg } from '../../ui/Svgs';
-import ConfirmModal from '../../ui/ConfirmModal';
-import UsersTable from '../../ui/UsersTable';
-import Modal from '../../ui/Modal';
+import Heading from '../../components/Heading';
+import Message from '../../components/Message';
+import FiltersBox from '../filters/Filtersbox';
+import Button from '../../components/Button';
+
+import ConfirmModal from '../../components/ConfirmModal';
+import UsersTable from './userTable/UsersTable';
+import Modal from '../../components/Modal';
 import AddUserForm from './AddUserForm';
+import TrashSvg from '../../components/TrashSvg';
 
 const StyledUsers = styled.div`
   display: grid;
@@ -92,12 +93,12 @@ function Users() {
         <FiltersBox />
       </div>
       <div id="styledUsers-buttonIcon">
-        <Button $width="5rem" $padding="1.4rem" onClick={handleClearFilters}>
+        <Button $type="button-5rem" onClick={handleClearFilters}>
           <TrashSvg />
         </Button>
       </div>
       <div id="styledUsers-button">
-        <Button $width="15rem" $padding="1.4rem" onClick={showAddUserModal}>
+        <Button $type="button-15rem" onClick={showAddUserModal}>
           Add User
         </Button>
       </div>

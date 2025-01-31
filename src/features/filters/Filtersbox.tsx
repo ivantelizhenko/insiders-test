@@ -1,9 +1,9 @@
 import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useAppState } from '../contexts/appContext/AppContext';
-import { useFilters } from '../contexts/filtersContext/FiltersContext';
-import FilterBox from './FilterBox';
+import { useAppState } from '../../contexts/appContext/AppContext';
+import { useFilters } from '../../contexts/filtersContext/FiltersContext';
+import FilterBox from '../../components/FilterBox';
 
 const FiltersBoxStyled = styled.div`
   display: flex;

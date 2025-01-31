@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { useNavigate, useLocation, useSearchParams } from 'react-router';
 
-import Button from './Button';
+import Button from '../components/Button';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -29,14 +29,14 @@ function Header() {
     <StyledHeader>
       <Button
         onClick={() => handleNavigate(`edit`)}
-        $width="20rem"
+        $type="button-20rem"
         $selected={curPage === 'edit'}
       >
         Edit Users
       </Button>
       <Button
         onClick={() => handleNavigate('users')}
-        $width="20rem"
+        $type="button-20rem"
         $selected={curPage === 'users'}
       >
         Users

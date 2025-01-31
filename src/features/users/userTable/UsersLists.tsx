@@ -5,7 +5,7 @@ import { useAppState } from '../../../contexts/appContext/AppContext';
 import { useFilters } from '../../../contexts/filtersContext/FiltersContext';
 
 import UserListItem from './UserListItem';
-import Message from '../../../ui/Message';
+import Message from '../../../components/Message';
 
 const StyledUsersLists = styled.ul`
   padding: 2.8rem 3.6rem;

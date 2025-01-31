@@ -28,10 +28,10 @@ const ConfirmModal = memo(function ConfirmModal({
     <Modal>
       <Heading as="h2">Are you sure?</Heading>
       <StyledConfirmModal>
-        <Button $width="20rem" onClick={handleAccept}>
+        <Button $type="button-20rem" onClick={handleAccept}>
           Yes
         </Button>
-        <Button $width="20rem" onClick={closeModal}>
+        <Button $type="button-20rem" onClick={closeModal}>
           No
         </Button>
       </StyledConfirmModal>

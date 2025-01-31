@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Filter from './Filter';
 
 import Button from './Button';
+import { useSearchParams } from 'react-router';
 
 type FilterBoxProps = {
   disabled?: boolean;
@@ -16,6 +17,7 @@ type FilterBoxProps = {
 const StyledFilterBox = styled.div`
   border: 1px #000 solid;
   width: 22rem;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -37,25 +39,30 @@ function FilterBox({
   availableFilters,
 }: FilterBoxProps) {
   const [showWindow, setShowWindow] = useState<boolean>(false);
+  const [curFilterLength, setCurFilterLength] = useState<number>(0);
+  const [searchParams] = useSearchParams();
 
-  const handleClick = useCallback(() => {
-    setShowWindow(prevState => !prevState);
-  }, []);
+  useEffect(() => {
+    const curLength = searchParams.get(name)?.split(',').length;
+    if (curLength) setCurFilterLength(curLength);
+  }, [searchParams, name]);
 
   useEffect(() => {
     if (disabled) setShowWindow(false);
   }, [disabled]);
 
+  const handleClick = useCallback(() => {
+    setShowWindow(prevState => !prevState);
+  }, []);
+
   return (
     <StyledFilterBox>
       <Button
+        $type="button-22rem-withoutBorder"
         onClick={handleClick}
-        $width="auto"
-        $padding="1rem"
-        $height="4.8rem"
         disabled={disabled}
       >
-        Select {name}
+        {curFilterLength ? `Selected(${curFilterLength})` : `Select ${name}`}
       </Button>
       {showWindow && !disabled && (
         <ul>

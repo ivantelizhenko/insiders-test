@@ -1,16 +1,16 @@
 import { FormEvent, useEffect } from 'react';
+import styled from 'styled-components';
 import _ from 'lodash';
 
 import { useAppState } from '../../contexts/appContext/AppContext';
 import { UserType } from '../../contexts/appContext/AppContextTypes';
-
-import Input from '../../ui/Input';
-import Select from '../../ui/Select';
-import Form from '../../ui/Form';
-import Button from '../../ui/Button';
-import styled from 'styled-components';
 import { useForm } from '../../hooks/useForm';
-import Heading from '../../ui/Heading';
+
+import Input from '../../components/Input';
+import Select from '../../components/Select';
+import Form from '../../components/Form';
+import Button from '../../components/Button';
+import Heading from '../../components/Heading';
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -82,11 +82,14 @@ function EditUserForm() {
         />
       </>
       <ButtonsContainer>
-        <Button $width="20rem" disabled={_.isEqual(updatedUser, currentUser)}>
+        <Button
+          $type="button-20rem"
+          disabled={_.isEqual(updatedUser, currentUser)}
+        >
           Save
         </Button>
         {!_.isEqual(updatedUser, currentUser) && (
-          <Button $width="10rem" onClick={handleDecline}>
+          <Button $type="button-10rem" onClick={handleDecline}>
             Undo
           </Button>
         )}

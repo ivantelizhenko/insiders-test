@@ -1,10 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 
-import AppLayout from './ui/AppLayout';
+import AppLayout from './features/AppLayout';
 import EditUsers from './features/editUser/EditUsers';
-import PageNotFound from './ui/PageNotFound';
+
 import Users from './features/users/Users';
 import { FiltersProvider } from './contexts/filtersContext/FiltersContext';
+import PageNotFound from './features/PageNotFound';
 
 function App() {
   return (

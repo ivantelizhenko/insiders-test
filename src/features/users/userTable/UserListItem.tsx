@@ -5,8 +5,8 @@ import { useCallback } from 'react';
 import { UserType } from '../../../contexts/appContext/AppContextTypes';
 import { useModal } from '../../../contexts/modalContext/ModalContext';
 
-import { TrashSvg } from '../../../ui/Svgs';
-import Button from '../../../ui/Button';
+import Button from '../../../components/Button';
+import TrashSvg from '../../../components/TrashSvg';
 
 const StyledUserListItem = styled.li`
   display: grid;
@@ -46,12 +46,7 @@ function UserListItem({ user }: { user: UserType }) {
       <p>{department.name}</p>
       <p>{country.name}</p>
       <p>{status.name}</p>
-      <Button
-        $width="5rem"
-        $padding="1.4rem"
-        $height="100%"
-        onClick={showAddUserModal}
-      >
+      <Button $type="button-5rem" onClick={showAddUserModal}>
         <TrashSvg />
       </Button>
     </StyledUserListItem>

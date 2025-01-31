@@ -4,9 +4,9 @@ import { ChangeEvent, useEffect } from 'react';
 import { useAppState } from '../../contexts/appContext/AppContext';
 
 import EditUserForm from './EditUserForm';
-import Heading from '../../ui/Heading';
-import Select from '../../ui/Select';
-import Message from '../../ui/Message';
+import Heading from '../../components/Heading';
+import Select from '../../components/Select';
+import Message from '../../components/Message';
 
 const StyledEditUsers = styled.div`
   display: flex;

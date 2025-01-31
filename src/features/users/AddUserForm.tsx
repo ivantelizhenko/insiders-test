@@ -6,12 +6,13 @@ import { useAppState } from '../../contexts/appContext/AppContext';
 import { UserType } from '../../contexts/appContext/AppContextTypes';
 import { useModal } from '../../contexts/modalContext/ModalContext';
 
-import Form from '../../ui/Form';
-import Input from '../../ui/Input';
-import Select from '../../ui/Select';
-import Button from '../../ui/Button';
+import Form from '../../components/Form';
+import Input from '../../components/Input';
+import Select from '../../components/Select';
+import Button from '../../components/Button';
+import Heading from '../../components/Heading';
+
 import { useForm } from '../../hooks/useForm';
-import Heading from '../../ui/Heading';
 
 const ButtonBox = styled.div`
   gap: 2rem;
@@ -79,12 +80,10 @@ function AddUserForm() {
         />
       </>
       <ButtonBox>
-        <Button $width="10rem" onClick={handleCloseModal}>
+        <Button $type="button-10rem" onClick={handleCloseModal}>
           Cancel
         </Button>
-        <Button $width="20rem" $padding="1.4rem">
-          Add User
-        </Button>
+        <Button $type="button-20rem">Add User</Button>
       </ButtonBox>
     </Form>
   );
