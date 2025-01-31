@@ -6,10 +6,8 @@ import { AppProvider } from '../contexts/appContext/AppContext';
 import { ModalProvider } from '../contexts/modalContext/ModalContext';
 
 const StyledAppLayout = styled.div`
-  font-family: 'Rubik', serif;
   display: flex;
   flex-direction: column;
-
   background-color: #fff;
   min-height: 100vh;
 `;

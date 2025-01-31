@@ -2,7 +2,8 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Filter from './Filter';
-import { Button } from './Button';
+
+import Button from './Button';
 
 type FilterBoxProps = {
   disabled?: boolean;

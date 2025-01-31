@@ -1,4 +1,4 @@
-import { memo, useCallback, useId } from 'react';
+import { memo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useSearchParams } from 'react-router';
 import styled from 'styled-components';
@@ -10,10 +10,10 @@ import { useFilters } from '../../contexts/filtersContext/FiltersContext';
 import Heading from '../../ui/Heading';
 import Message from '../../ui/Message';
 import FiltersBox from '../../ui/Filtersbox';
-import { Button } from '../../ui/Button';
+import Button from '../../ui/Button';
 import { TrashSvg } from '../../ui/Svgs';
 import ConfirmModal from '../../ui/ConfirmModal';
-import UsersTable from './userTable/UsersTable';
+import UsersTable from '../../ui/UsersTable';
 import Modal from '../../ui/Modal';
 import AddUserForm from './AddUserForm';
 
@@ -47,7 +47,6 @@ const StyledUsers = styled.div`
 `;
 
 const UsersTableMemo = memo(UsersTable);
-const FiltersBoxMemo = memo(FiltersBox);
 
 function Users() {
   const [searchParams] = useSearchParams();
@@ -55,7 +54,6 @@ function Users() {
   const { modalStatus, setStatusModal, closeModal } = useModal();
   const { departmentFilters, deleteFilterValues, toggleAllowAllFilters } =
     useFilters();
-  console.log(useId());
 
   const handleDeleteUser = useCallback(() => {
     const userId = searchParams.get('id');
@@ -91,7 +89,7 @@ function Users() {
         )}
       </div>
       <div id="styledUsers-filterBox">
-        <FiltersBoxMemo />
+        <FiltersBox />
       </div>
       <div id="styledUsers-buttonIcon">
         <Button $width="5rem" $padding="1.4rem" onClick={handleClearFilters}>

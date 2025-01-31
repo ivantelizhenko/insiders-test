@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { Button } from '../../../ui/Button';
-import { TrashSvg } from '../../../ui/Svgs';
-import { UserType } from '../../../contexts/appContext/AppContextTypes';
 import { useSearchParams } from 'react-router';
-import { useModal } from '../../../contexts/modalContext/ModalContext';
 import { useCallback } from 'react';
+
+import { UserType } from '../../../contexts/appContext/AppContextTypes';
+import { useModal } from '../../../contexts/modalContext/ModalContext';
+
+import { TrashSvg } from '../../../ui/Svgs';
+import Button from '../../../ui/Button';
 
 const StyledUserListItem = styled.li`
   display: grid;

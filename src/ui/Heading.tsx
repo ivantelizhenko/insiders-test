@@ -5,7 +5,6 @@ type HeadingProps = PropsWithChildren<{ as: string }>;
 
 const Heading = styled.h2<HeadingProps>`
   display: flex;
-
   align-items: center;
   line-height: 3.2rem;
   font-weight: 400;

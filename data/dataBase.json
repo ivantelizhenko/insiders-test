@@ -140,16 +140,16 @@
     {
       "name": "Jane Smith",
       "status": {
-        "name": "Disabled",
-        "value": "DISABLED"
+        "name": "Active",
+        "value": "ACTIVE"
       },
       "department": {
-        "name": "Finance",
-        "value": "FIN"
+        "name": "Marketing",
+        "value": "MKT"
       },
       "country": {
-        "name": "Canada",
-        "value": "CA"
+        "name": "France",
+        "value": "FR"
       },
       "id": "8953"
     },

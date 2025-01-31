@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { useNavigate, useSearchParams } from 'react-router';
 
-import { Button } from './Button';
+import { useNavigate, useLocation, useSearchParams } from 'react-router';
 
-import { useLocation } from 'react-router';
+import Button from './Button';
 
 const StyledHeader = styled.header`
   display: flex;

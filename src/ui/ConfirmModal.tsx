@@ -1,9 +1,11 @@
+import { memo } from 'react';
 import styled from 'styled-components';
-import { Button } from './Button';
+
+import { useModal } from '../contexts/modalContext/ModalContext';
+
+import Button from './Button';
 import Modal from './Modal';
 import Heading from './Heading';
-import { useModal } from '../contexts/modalContext/ModalContext';
-import { memo } from 'react';
 
 const StyledConfirmModal = styled.div`
   display: flex;

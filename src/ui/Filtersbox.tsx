@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useAppState } from '../contexts/appContext/AppContext';
@@ -38,12 +38,9 @@ function FiltersBox() {
     }
   }, [departmentFilters, deleteFilterValues, statusFilters, countryFilters]);
 
-  const handleChangeFilter = useCallback(
-    (name: string, e: ChangeEvent<HTMLInputElement>) => {
-      toggleFilterValue(name, e.target.value);
-    },
-    [toggleFilterValue]
-  );
+  function handleChangeFilter(name: string, e: ChangeEvent<HTMLInputElement>) {
+    toggleFilterValue(name, e.target.value);
+  }
 
   return (
     <FiltersBoxStyled>
@@ -51,21 +48,21 @@ function FiltersBox() {
         data={departments}
         name="department"
         handleChange={e => handleChangeFilter('department', e)}
-        availableFilters={departmentFilters as string[]}
+        availableFilters={departmentFilters}
       />
       <FilterBox
         disabled={!allowAll}
         data={countries}
         name="country"
         handleChange={e => handleChangeFilter('country', e)}
-        availableFilters={countryFilters as string[]}
+        availableFilters={countryFilters}
       />
       <FilterBox
         disabled={!allowAll}
         data={statuses}
         name="status"
         handleChange={e => handleChangeFilter('status', e)}
-        availableFilters={statusFilters as string[]}
+        availableFilters={statusFilters}
       />
     </FiltersBoxStyled>
   );

@@ -14,7 +14,7 @@ export function useForm<InitialStateType>(initialState: InitialStateType) {
   function handleChange(e: HandleChangeEventProp) {
     const tag = e.target.tagName.toLowerCase();
 
-    if (tag === 'select') {
+    if (tag === 'select' && e.target.value) {
       const optionValue = e.target.value;
 
       const selectObjs = JSON.parse(e.target.dataset.selection_objs!);

@@ -15,15 +15,19 @@ const Overlay = styled.div`
 `;
 
 const StyledModal = styled.div`
-  width: 75%;
-  background-color: #fff;
+  min-width: 72rem;
+  max-width: 140rem;
+
+  border: 1px solid #000;
   position: absolute;
-  top: 20rem;
+  top: 50%;
   right: 50%;
-  transform: translatex(50%);
+  transform: translate(50%, -50%);
   padding: 6rem 8rem;
   display: flex;
   flex-direction: column;
+  gap: 6rem;
+  background-color: #fff;
   box-shadow: 0px 10px 20px rgb(0, 0, 0, 0.1);
   z-index: 100;
 `;

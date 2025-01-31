@@ -1,5 +1,5 @@
-import Table from '../../../ui/Table';
-import UsersLists from './UsersLists';
+import Table from './Table';
+import UsersLists from '../features/users/userTable/UsersLists';
 
 function UsersTable() {
   return (

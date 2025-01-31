@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FormEvent, ReactNode } from 'react';
 
-import Heading from './Heading';
+type FormProps = {
+  children: ReactNode;
+  handleSubmit: (e: FormEvent) => void;
+  type: 'user/edit' | 'user/add';
+};
 
 const StyledForm = styled.form`
   display: flex;
@@ -9,25 +13,35 @@ const StyledForm = styled.form`
   gap: 4rem;
 `;
 
-const InputsBox = styled.div`
+const InputsBox = styled.div<{ $type: string }>`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  row-gap: 8rem;
-  column-gap: 2rem;
+  grid-template-rows: auto;
+  & h1,
+  h2,
+  h3,
+  h3,
+  h5,
+  h6 {
+    grid-column: 1/-1;
+  }
+
+  ${props =>
+    props.$type === 'user/edit' &&
+    css`
+      gap: 4rem;
+    `}
+  ${props =>
+    props.$type === 'user/add' &&
+    css`
+      gap: 6rem;
+    `}
 `;
 
-type FormProps = {
-  title: string;
-  children: ReactNode;
-  handleSubmit: (e: FormEvent) => void;
-};
-
-function Form({ title, children, handleSubmit }: FormProps) {
+function Form({ children, handleSubmit, type }: FormProps) {
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <Heading as="h3">{title}</Heading>
-      <InputsBox>{children}</InputsBox>
+      <InputsBox $type={type}>{children}</InputsBox>
     </StyledForm>
   );
 }

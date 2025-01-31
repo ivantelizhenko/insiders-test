@@ -34,11 +34,6 @@ function EditUsers() {
     setCurrentUser('');
   }, [setCurrentUser]);
 
-  const usersTransform = users.map(user => ({
-    id: user.id,
-    name: user.name,
-  }));
-
   function handleSelectUser(e: ChangeEvent<HTMLSelectElement>) {
     setCurrentUser(e.target.value);
   }
@@ -56,9 +51,8 @@ function EditUsers() {
             <Select
               label="User"
               name="user"
-              objs={usersTransform}
+              objs={users}
               handlerSelect={handleSelectUser}
-              defaultValue={currentUser?.id}
             />
           </span>
           {currentUser?.name && <EditUserForm />}
