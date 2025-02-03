@@ -2,10 +2,10 @@ import { ChangeEvent, useCallback, useState } from 'react';
 
 type HandleChangeEventProp = ChangeEvent<HTMLInputElement | HTMLSelectElement>;
 
-type useFormReturnType<InitialStateType> = [
-  values: InitialStateType,
+type useFormReturnType<T> = [
+  values: T,
   (e: HandleChangeEventProp) => void,
-  (e: InitialStateType) => void
+  (e: T) => void
 ];
 
 export function useForm<InitialStateType>(initialState: InitialStateType) {

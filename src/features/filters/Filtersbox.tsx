@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { useAppState } from '../../contexts/appContext/AppContext';
 import { useFilters } from '../../contexts/filtersContext/FiltersContext';
+import { AT_LEAST_DEPARTMENT_FILTERS } from '../../utils/constants.ts';
 import FilterBox from '../../components/FilterBox';
 
 const FiltersBoxStyled = styled.div`
@@ -25,12 +26,14 @@ function FiltersBox() {
   useEffect(() => {
     if (departmentFilters.length === 0) return;
 
-    toggleAllowAllFilters(departmentFilters.length >= 3);
+    toggleAllowAllFilters(
+      departmentFilters.length >= AT_LEAST_DEPARTMENT_FILTERS
+    );
   }, [departmentFilters, toggleAllowAllFilters]);
 
   useEffect(() => {
     if (
-      departmentFilters.length < 3 &&
+      departmentFilters.length < AT_LEAST_DEPARTMENT_FILTERS &&
       (statusFilters.length || countryFilters.length)
     ) {
       deleteFilterValues('country');

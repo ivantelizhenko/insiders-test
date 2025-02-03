@@ -4,7 +4,7 @@ import styled from 'styled-components';
 type InputProps = {
   label: string;
   type: string;
-  name: string;
+  name: 'name' | 'department' | 'country' | 'status';
   required?: true | false;
   defaultValue?: string | undefined;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;

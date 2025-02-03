@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type SelectType = {
   label: string;
-  name: string;
+  name: 'name' | 'department' | 'country' | 'status';
   objs: { name: string; id: string; value?: string }[];
   handlerSelect: (e: ChangeEvent<HTMLSelectElement>) => void;
   required?: true | false;
